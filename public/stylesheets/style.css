@@ -318,6 +318,10 @@ span.line-text {
   font-size: 1.33rem;
 }
 
+.price {
+  margin-top:0!important;
+}
+
 /* Room Page */
 .ui.masthead.segment.rooms {
   background-size: cover;
