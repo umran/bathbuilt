@@ -1,0 +1,61 @@
+div(class="ui inverted fixed text menu not-home mobile chameleon" id="cover-menu")
+  div(class="ui container")
+    a(class="inverted header item" href='/')
+      img(src="/images/logo/BathBuiltBlack.png" style="width:128px;")
+    div(class="right menu")
+      a(class="item" href='#' id='toggle-sidebar')
+        |<i class="fas fa-bars"></i>
+div(class="ui inverted fixed text menu not-home desktop chameleon" id="cover-menu")
+  div(class="ui container")
+    a(class="inverted header item" id="universal" href='/')
+      img(src="/images/logo/BathBuiltBlack.png" style="width:128px;")
+    div(class="right menu")
+      a(class="browse item product")
+        |Products
+      //a(class="browse product item")
+        |Stains
+        //i(class="dropdown icon")
+      a(class="item")
+        |About Us
+      a(class="item")
+        |Inquiries
+      a(class="browse item")
+        |Testimonials
+      //div(class="item")
+        //button(class="ui inverted blue button")
+          |Inquiries
+        button(class="ui inverted blue button")
+          |Customize
+    .ui.fluid.popup.bottom.transition.hidden
+      .ui.three.column.relaxed.equal.height.divided.grid
+        .column
+          h2.ui.header.title Rooms
+          .ui.link.list
+            each room in rooms
+              a.item(href='/rooms/#{room.cid}')
+                //img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
+                span.line-text
+                  |#{room.entry.fields.name["en-US"]}
+        //.column
+          h2.ui.header.title Size
+          .ui.link.list
+            a.item Small
+            a.item Medium
+            a.item Large
+            a.item Plus Sizes
+        .column
+          h2.ui.header.title Stains
+          .ui.link.list
+            each stain in stains
+              a.item(href='/stains/#{stain.cid}')
+                img.ui.mini.avatar.image.menu(src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+                span.line-text
+                  |#{stain.entry.fields.name["en-US"]}
+        .column
+          h2.ui.header.title Materials
+          .ui.link.list
+            each material in materials
+              a.item(href='/materials/#{material.cid}')
+                img.ui.mini.avatar.image.menu(src='#{material.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+                span.line-text
+                  |#{material.entry.fields.name["en-US"]}

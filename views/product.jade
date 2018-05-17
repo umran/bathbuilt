@@ -1,0 +1,123 @@
+extends layout
+
+block content
+  include sidebar.jade
+  div(class="pusher")
+    include menu-alt.jade
+
+    div(class="ui vertical product segment")
+      div(class="ui stackable grid container")
+        .ten.wide.column.product-item
+          img.ui.fluid.image.main-image(src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}')
+          .thumbnails
+            .ui.tiny.images
+              each image in result.entry.fields.pictures["en-US"]
+                a(href='#')
+                  img.thumb.alternative-image(src='#{image.fields.file["en-US"].url}')
+        .six.wide.column
+          h2
+            | #{result.entry.fields.name['en-US']}
+          p.product-description
+            | #{result.entry.fields.specifications["en-US"]}
+          form.ui.form.choice
+            button.ui.blue.inverted.button(id="toggle-modal-order")
+              |Order
+            button.ui.green.inverted.button(id="toggle-modal-customize")
+              |Customize
+
+    .ui.modal(id='modal-customize')
+      .header
+        |Please fill out this form and we will get back to you.
+      .content
+        .ui.form.contact(id='customizeForm')
+          .field.prompt
+            label Email
+            input(type='email' name='email')
+          .field.prompt
+            label Phone
+            input(type='text' name='phone')
+          if result.entry.fields.stains
+            .field(id='stainsOption').prompt
+              .ui.fluid.selection.dropdown
+                input(type='hidden', name='stains')
+                i.dropdown.icon
+                .default.text Select Stain
+                .menu
+                  each stain in result.entry.fields.stains["en-US"]
+                    .item(data-value='#{stain.fields.name["en-US"]}')
+                      img.ui.mini.avatar.image(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
+                      |#{stain.fields.name["en-US"]}
+          if result.entry.fields.materials
+            .field(id='materialsOption').prompt
+              .ui.fluid.selection.dropdown
+                input(type='hidden', name='materials')
+                i.dropdown.icon
+                .default.text Select Material
+                .menu
+                  each material in result.entry.fields.materials["en-US"]
+                    .item(data-value='#{material.fields.name["en-US"]}')
+                      img.ui.mini.avatar.image(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
+                      |#{material.fields.name["en-US"]}
+          if result.entry.fields.size
+            .field(id='sizeOption').prompt
+              .ui.fluid.selection.dropdown
+                input(type='hidden', name='size')
+                i.dropdown.icon
+                .default.text Select Size
+                .menu
+                  each size in result.entry.fields.size["en-US"]
+                    .item(data-value='#{size.fields.name["en-US"]}')
+                      |#{size.fields.name["en-US"]}
+          .field.prompt
+            label Details
+            textarea(type='text' name='details')
+          .ui.green.submit.button(id='customize-submit') Submit
+
+    .ui.modal(id='modal-order')
+      .header
+        |Please fill out this form and we'll get back to you.
+      .content
+        .ui.form.contact(id='orderForm')
+          .field.prompt
+            label Email
+            input(type='email' name='email')
+          .field.prompt
+            label Phone
+            input(type='text' name='phone')
+          if result.entry.fields.stains
+            .field(id='stainsOption').prompt
+              .ui.fluid.selection.dropdown
+                input(type='hidden', name='stains')
+                i.dropdown.icon
+                .default.text Select Stain
+                .menu
+                  each stain in result.entry.fields.stains["en-US"]
+                    .item(data-value='#{stain.fields.name["en-US"]}')
+                      img.ui.mini.avatar.image(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
+                      |#{stain.fields.name["en-US"]}
+          if result.entry.fields.materials
+            .field(id='materialsOption').prompt
+              .ui.fluid.selection.dropdown
+                input(type='hidden', name='materials')
+                i.dropdown.icon
+                .default.text Select Material
+                .menu
+                  each material in result.entry.fields.materials["en-US"]
+                    .item(data-value='#{material.fields.name["en-US"]}')
+                      img.ui.mini.avatar.image(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
+                      |#{material.fields.name["en-US"]}
+          if result.entry.fields.size
+            .field(id='sizeOption').prompt
+              .ui.fluid.selection.dropdown
+                input(type='hidden', name='size')
+                i.dropdown.icon
+                .default.text Select Size
+                .menu
+                  each size in result.entry.fields.size["en-US"]
+                    .item(data-value='#{size.fields.name["en-US"]}')
+                      |#{size.fields.name["en-US"]}
+          .ui.green.submit.button(id='order-submit') Submit
+    include footer.jade
+
+block scripts
+  script(src="/javascripts/bathbuilt.js")

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  include sidebar.jade
+  div.pusher
+    include menu-alt.jade
+
+    .ui.masthead.segment.rooms.musk(style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + result.entry.fields.banner["en-US"].fields.file["en-US"].url + "');"))
+      .ui.stackable.three.column.centered.grid.container
+        .column
+          .featured-details.rooms
+            h1(class="ui inverted header title").musk-header
+              |#{result.entry.fields.name["en-US"]}
+            //h2.ui.inverted.header
+              |Dining Set
+
+    .ui.vertical.showcase.segment.rooms
+      div(class="ui stackable grid container")
+        each product in products
+          .four.wide.column.screv
+            a(href='/products/#{product.cid}')
+              .ui.showcase-item.segment(style=("background-image: url('" + product.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
+              .ui.showcase-item-excerpt.segment.cat
+                h2.ui.header.title.cat-header
+                  |#{product.entry.fields.name["en-US"]}
+    include footer.jade
+block scripts
+  script(src="/javascripts/bathbuilt.js")
