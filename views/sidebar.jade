@@ -10,6 +10,22 @@
             |#{room.entry.fields.name["en-US"]}
   .item
     .header
+      |General
+    .menu
+      a.item(href='#')
+        span.line-text
+          |About Us
+      a.item(href='/testimonials')
+        span.line-text
+          |Testimonials
+      //-a.item(href='#')
+        span.line-text
+          |Inquiries
+      a.item(href='#')
+        span.line-text
+          |Disclaimer
+  //-.item
+    .header
       |Stains
     .menu
       each stain in stains
@@ -17,7 +33,7 @@
           //img.ui.mini.avatar.image.menu(src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
           span.line-text
             |#{stain.entry.fields.name["en-US"]}
-  .item
+  //-.item
     .header
       |Materials
     .menu

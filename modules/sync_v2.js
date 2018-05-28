@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 var config = require('../config')
 var contentful = require('contentful')
-var data = require('./data')
+var data = require('./data-static')
 
 exports.init = function(callback) {
 
@@ -49,7 +49,7 @@ exports.init = function(callback) {
   })
 }
 
-exports.process = function(response, deleteed) {
+exports.process = function(response) {
   var results = response.response.entries
   var deletedEntries = []
   var nextSyncToken = response.response.nextSyncToken

@@ -10,22 +10,28 @@ div(class="ui inverted fixed text menu not-home desktop chameleon" id="cover-men
     a(class="inverted header item" id="universal" href='/')
       img(src="/images/logo/BathBuiltBlack.png" style="width:128px;")
     div(class="right menu")
+      a(class="ui pointing dropdown link item")
+        |Products
+        i(class="dropdown icon")
+        div(class="menu")
+          each room in rooms
+            div.item(onclick='location.href="/rooms/#{room.cid}"')
+              //img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
+              span.line-text
+                |#{room.entry.fields.name["en-US"]}
       a(class="browse item product")
         |Products
       //a(class="browse product item")
         |Stains
         //i(class="dropdown icon")
-      a(class="item")
+      a(class="item" href="/about")
         |About Us
-      a(class="item")
+      a(class="browse item" href="/testimonials")
+        |Testimonials
+      //-a(class="item")
         |Inquiries
       a(class="browse item")
-        |Testimonials
-      //div(class="item")
-        //button(class="ui inverted blue button")
-          |Inquiries
-        button(class="ui inverted blue button")
-          |Customize
+        |Disclaimer
     .ui.fluid.popup.bottom.transition.hidden
       .ui.three.column.relaxed.equal.height.divided.grid
         .column

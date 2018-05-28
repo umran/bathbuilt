@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  include sidebar.jade
+  div.pusher
+    include menu-alt.jade
+
+    .testimonials
+      .ui.text.container
+
+        article
+
+          h1.centered-text Testimonials
+
+          each testimonial in testimonials
+            blockquote
+              |#{testimonial.entry.fields.testimonial['en-US']}
+            h2.ui.header
+              |- #{testimonial.entry.fields.customer['en-US']}
+
+    include footer.jade
+block scripts
+  script(src="/javascripts/bathbuilt.js")

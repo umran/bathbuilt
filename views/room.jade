@@ -15,7 +15,7 @@ block content
               |Dining Set
 
     .ui.vertical.showcase.segment.rooms
-      div(class="ui stackable grid container")
+      //-div(class="ui grid container")
         each product in products
           .four.wide.column.screv
             a(href='/products/#{product.cid}')
@@ -23,6 +23,17 @@ block content
               .ui.showcase-item-excerpt.segment.cat
                 h2.ui.header.title.cat-header
                   |#{product.entry.fields.name["en-US"]}
+
+      .ui.container
+        .ui.four.doubling.cards
+          each product in products
+            .card.screv(onclick='location.href="/products/#{product.cid}"')
+              .image.product(style=("background-image: url('" + product.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
+              .content
+                .better.header.centered-text
+                  |#{product.entry.fields.name["en-US"]}
+
+
     include footer.jade
 block scripts
   script(src="/javascripts/bathbuilt.js")

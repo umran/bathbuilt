@@ -17,28 +17,64 @@ block content
         .six.wide.column
           h2
             | #{result.entry.fields.name['en-US']}
-          h3.price
-            | $799
-          p.product-description
-            | #{result.entry.fields.specifications["en-US"]}
-          form.ui.form.choice
-            button.ui.blue.inverted.button(id="toggle-modal-order")
-              |Order
-            button.ui.green.inverted.button(id="toggle-modal-customize")
-              |Customize
+          h3.price(id='price')
+            | Please choose from the choices below to see price
+          article.product-description
+            | !{result.entry.fields.specifications["en-US"]}
+          form.ui.form.choice(id="options-form")
+            input(type="hidden" value="#{result.entry.sys.id}" id="product-id")
+            if result.entry.fields.stains
+              .field(id='stainsOption').prompt
+                .ui.fluid.selection.dropdown
+                  input(type='hidden', name='stains', id='default-stain')
+                  i.dropdown.icon
+                  .default.text Select Stain
+                  .menu
+                    each stain in result.entry.fields.stains["en-US"]
+                      .item(data-value='#{stain.fields.name["en-US"]}')
+                        img.ui.mini.avatar.image.circ(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
+                        |#{stain.fields.name["en-US"]}
+            if result.entry.fields.materials
+              .field(id='materialsOption').prompt
+                .ui.fluid.selection.dropdown
+                  input(type='hidden', name='materials', id='default-material')
+                  i.dropdown.icon
+                  .default.text Select Material
+                  .menu
+                    each material in result.entry.fields.materials["en-US"]
+                      .item(data-value='#{material.fields.name["en-US"]}' data-idd='#{material.sys.id}')
+                        img.ui.mini.avatar.image.circ(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
+                        |#{material.fields.name["en-US"]}
+            if result.entry.fields.size
+              .field(id='sizeOption').prompt
+                .ui.fluid.selection.dropdown
+                  input(type='hidden', name='size', id='default-size')
+                  i.dropdown.icon
+                  .default.text Select Size
+                  .menu
+                    each size in result.entry.fields.size["en-US"]
+                      .item(data-value='#{size.fields.name["en-US"]}' data-idd='#{size.sys.id}')
+                        |#{size.fields.name["en-US"]}
+            .ui.hidden.negative.message(id='choice-error')
+              p(id='choice-error-message')
+            button.submit.ui.teal.basic.button(id="toggle-modal-order")
+              |Order Now
+            button.submit.ui.grey.basic.button(id="toggle-modal-customize")
+              |Request a Custom Order
 
     .ui.modal(id='modal-customize')
       .header
-        |Please fill out this form and we will get back to you.
+        |Please fill out this form and we will send you an invoice to process your order.
       .content
         .ui.form.contact(id='customizeForm')
           .field.prompt
             label Email
-            input(type='email' name='email')
+            input(type='email' name='email' id='email-customize')
+            input(type="hidden" name="product" id="product-customize" value="#{result.entry.fields.name['en-US']}")
           .field.prompt
             label Phone
-            input(type='text' name='phone')
-          if result.entry.fields.stains
+            input(type='text' name='phone' id='phone-customize')
+          //-if result.entry.fields.stains
             .field(id='stainsOption').prompt
               .ui.fluid.selection.dropdown
                 input(type='hidden', name='stains')
@@ -49,7 +85,7 @@ block content
                     .item(data-value='#{stain.fields.name["en-US"]}')
                       img.ui.mini.avatar.image(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
                       |#{stain.fields.name["en-US"]}
-          if result.entry.fields.materials
+          //-if result.entry.fields.materials
             .field(id='materialsOption').prompt
               .ui.fluid.selection.dropdown
                 input(type='hidden', name='materials')
@@ -60,7 +96,7 @@ block content
                     .item(data-value='#{material.fields.name["en-US"]}')
                       img.ui.mini.avatar.image(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
                       |#{material.fields.name["en-US"]}
-          if result.entry.fields.size
+          //-if result.entry.fields.size
             .field(id='sizeOption').prompt
               .ui.fluid.selection.dropdown
                 input(type='hidden', name='size')
@@ -72,21 +108,22 @@ block content
                       |#{size.fields.name["en-US"]}
           .field.prompt
             label Details
-            textarea(type='text' name='details')
+            textarea(type='text' name='details' id='details-customize')
           .ui.green.submit.button(id='customize-submit') Submit
 
     .ui.modal(id='modal-order')
       .header
-        |Please fill out this form and we'll get back to you.
+        |Please fill out this form and we will send you an invoice to process your order.
       .content
         .ui.form.contact(id='orderForm')
           .field.prompt
             label Email
-            input(type='email' name='email')
+            input(type='email' name='email' id='email-order')
+            input(type="hidden" name="product" id="product-order" value="#{result.entry.fields.name['en-US']}")
           .field.prompt
             label Phone
-            input(type='text' name='phone')
-          if result.entry.fields.stains
+            input(type='text' name='phone' id='phone-order')
+          //-if result.entry.fields.stains
             .field(id='stainsOption').prompt
               .ui.fluid.selection.dropdown
                 input(type='hidden', name='stains')
@@ -97,7 +134,7 @@ block content
                     .item(data-value='#{stain.fields.name["en-US"]}')
                       img.ui.mini.avatar.image(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
                       |#{stain.fields.name["en-US"]}
-          if result.entry.fields.materials
+          //-if result.entry.fields.materials
             .field(id='materialsOption').prompt
               .ui.fluid.selection.dropdown
                 input(type='hidden', name='materials')
@@ -108,7 +145,7 @@ block content
                     .item(data-value='#{material.fields.name["en-US"]}')
                       img.ui.mini.avatar.image(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
                       |#{material.fields.name["en-US"]}
-          if result.entry.fields.size
+          //-if result.entry.fields.size
             .field(id='sizeOption').prompt
               .ui.fluid.selection.dropdown
                 input(type='hidden', name='size')
@@ -119,6 +156,14 @@ block content
                     .item(data-value='#{size.fields.name["en-US"]}')
                       |#{size.fields.name["en-US"]}
           .ui.green.submit.button(id='order-submit') Submit
+
+    .ui.modal(id='modal-final')
+      //-.header
+        |Please fill out this form and we will send you an invoice to process your order.
+      .content
+        .ui.message(id='final-message')
+          .header(id='final-message-text')
+
     include footer.jade
 
 block scripts

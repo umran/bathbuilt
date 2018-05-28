@@ -5,16 +5,23 @@ block content
   div(class="pusher")
     include menu-home.jade
 
-    div(class="ui vertical masthead segment home")
-      div(class="ui container" id="cover-text")
-        .ui.two.column.grid
-          .column
-            a(href="/products/")
-              .featured-details
-                h2.ui.inverted.header
-                  |Dining Set
-                h1(class="ui inverted header title")
-                  |ZÜRICH
+    span(id="carousel")
+      div(class="ui vertical masthead segment home" style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + feature.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
+        div(class="ui container" id="cover-text")
+          .ui.two.column.grid
+            .column(id="masthead-text")
+              a(href="/products/#{feature.cid}")
+                .featured-details
+                  h1(class="ui inverted header title")
+                    |#{feature.entry.fields.name["en-US"]}
+
+    div(class="ui vertical showcase segment")
+      div(class="ui text container")
+        .philosophy
+          h1.ui.header.title
+            |Welcome to Bath Built
+          h2.ui.header
+            |Custom Furniture made locally in Abbotsford, BC
 
     div(class="ui vertical showcase segment")
       div(class="ui stackable three column centered grid container")
@@ -24,23 +31,6 @@ block content
               .musk.ui.showcase-item.segment(style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + room.entry.fields.banner["en-US"].fields.file["en-US"].url + "');"))
                 h3.ui.header.musk-header
                   |#{room.entry.fields.name["en-US"]}
-
-      div(class="ui stackable grid container individuals")
-        each product in products
-          .four.wide.column.screv
-            a(href='/products/#{product.cid}')
-              .ui.showcase-item.segment(style=("background-image: url('" + product.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
-              .ui.showcase-item-excerpt.segment.cat
-                h2.ui.header.title.cat-header
-                  |#{product.entry.fields.name["en-US"]}
-
-    div(class="ui vertical showcase segment")
-      div(class="ui text container")
-        .philosophy
-          h1.ui.header.title
-            |Welcome to Bathbuilt
-          h2.ui.header
-            |Custom Furniture made locally in Abbotsford, BC
 
     include footer.jade
 

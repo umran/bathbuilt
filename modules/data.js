@@ -4,6 +4,7 @@ var State = require('../models/state')
 var Product = require('../models/product')
 var Room = require('../models/room')
 var Entry = require('../models/entry')
+var Order = require('../models/order')
 var crypto = require('./crypto_primitives')
 
 var config = require('../config')
@@ -100,7 +101,7 @@ exports.getRecentProducts = function(limit, callback) {
 }
 
 exports.getRandomProducts = function(limit, callback) {
-  Entry.find({type: "product"}).sort({date_created: -1}).limit(limit).exec(function(err, res) {
+  Entry.aggregate([{$match: {"type": "product"}}, {$sample: {"size": limit}}], function(err, res){
     if(err) {
       callback(err)
       return
@@ -205,7 +206,7 @@ exports.getHome = function(callback) {
   }, function(cb) {
     exports.getAllMaterials(cb)
   }, function(cb) {
-    exports.getRandomProducts(12, cb)
+    exports.getRandomProducts(1, cb)
   }], function(err, res) {
     if(err) {
       callback(err)
@@ -289,6 +290,71 @@ exports.getMaterial = function(id, callback) {
   }, function(cb) {
     exports.getProductsByMaterial(id, cb)
   }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
+exports.getAllTestimonials = function(callback) {
+  Entry.find({type: "testimonial"}).sort({date_modified: -1}).exec(function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
+exports.getTestimonialPage = function(callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getAllTestimonials(cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
+exports.createOrder = function(entry, callback) {
+  entry.date_created = new Date()
+  var newOrder = new Order(entry)
+
+  newOrder.save(function(err){
+    if(err) {
+      console.log(err)
+      callback('something went wrong')
+      return
+    }
+
+    callback(null, {message: 'Your order has been placed. Bath Built will get back to you shortly. Thank you!'})
+  })
+}
+
+exports.getPrice = function(data, callback) {
+  var query = {}
+  if(data.material_id && data.size_id) {
+    query = {$and:[{"entry.fields.material.en-US.sys.id": data.material_id}, {"type": "prices"}, {"entry.fields.size.en-US.sys.id": data.size_id}, {"entry.fields.product.en-US.sys.id": data.product_id}]}
+  } else if (data.material_id) {
+    query = {$and:[{"entry.fields.material.en-US.sys.id": data.material_id}, {"type": "prices"}, {"entry.fields.product.en-US.sys.id": data.product_id}]}
+  } else if (data.size_id) {
+    query = {$and:[{"type": "prices"}, {"entry.fields.size.en-US.sys.id": data.size_id}, {"entry.fields.product.en-US.sys.id": data.product_id}]}
+  }
+
+  Entry.findOne(query, function(err, res) {
     if(err) {
       callback(err)
       return

@@ -1,14 +1,35 @@
+var mongoose = require('mongoose')
 var sync = require('../modules/sync_v2')
-var data = require('../modules/data')
+var data = require('../modules/data-static')
+var config = require('../config')
+
+mongoose.connect(config.mongo_url)
+mongoose.connection.on('connected', function(){
+  console.log("Connection to mongodb established")
+})
+mongoose.connection.on('error', function(err){
+  console.log(err)
+})
+mongoose.connection.on('disconnected', function(){
+  console.log("Connection to mongodb disconnected")
+})
 
 sync.init(function(err, res) {
   if (err) {
     console.log(err)
+    terminateIO()
     return
   }
 
   sync.process(res)
+  terminateIO()
 })
+
+function terminateIO() {
+  setTimeout(function() {
+    mongoose.connection.close()
+  }, 300000)
+}
 
 // function doNext() {
 //
