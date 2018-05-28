@@ -467,6 +467,11 @@ article > p:first-child {
   text-align: center;
 }
 
+/* Footer Rules */
+.social > .text {
+  padding-left: 5px;
+}
+
 /* Responsive Rules */
 
 /* non desktop rules */

@@ -6,11 +6,15 @@ var Room = require('../models/room')
 var Entry = require('../models/entry')
 var Order = require('../models/order')
 var crypto = require('./crypto_primitives')
+var slug = require("slug")
 
 var config = require('../config')
 
 exports.updateEntry = function(cid, entry, type, callback) {
   var hash = crypto.sha256(JSON.stringify(entry))
+  if (type == 'product' || type == 'rooms') {
+    var entry_slug = slug(entry.fields.name['en-US'])
+  }
   Entry.findOne({cid: cid}, function(err, res) {
     if (err) {
       callback(err)
@@ -21,7 +25,11 @@ exports.updateEntry = function(cid, entry, type, callback) {
       if (res.hash == hash) {
         callback(null, {status: 300})
       } else {
-        Entry.update({_id: res.id}, {cid: cid, entry: entry, type: type, hash: hash, date_modified: new Date()}, function(err) {
+        var update_query = {cid: cid, entry: entry, type: type, hash: hash, date_modified: new Date()}
+        if(entry_slug) {
+          update_query.slug = entry_slug
+        }
+        Entry.update({_id: res.id}, update_query, function(err) {
           if(err) {
             callback(err)
             return
@@ -31,7 +39,11 @@ exports.updateEntry = function(cid, entry, type, callback) {
         })
       }
     } else {
-      var newEntry = new Entry({cid: cid, entry: entry, type: type, hash: hash, date_modified: new Date()})
+      var create_query = {cid: cid, entry: entry, type: type, hash: hash, date_modified: new Date()}
+      if(entry_slug) {
+        create_query.slug = entry_slug
+      }
+      var newEntry = new Entry(create_query)
       newEntry.save(function(err){
         if(err) {
           callback(err)
@@ -206,7 +218,7 @@ exports.getHome = function(callback) {
   })
 }
 
-exports.getProduct = function(id, callback) {
+exports.getProductById = function(id, callback) {
   async.parallel([function(cb) {
     exports.getAllRooms(cb)
   }, function(cb) {
@@ -215,6 +227,25 @@ exports.getProduct = function(id, callback) {
     exports.getAllMaterials(cb)
   }, function(cb) {
     exports.getEntry({cid: id, type: "product"}, cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
+exports.getProductBySlug = function(slug, callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getEntry({slug: slug, type: "product"}, cb)
   }], function(err, res) {
     if(err) {
       callback(err)

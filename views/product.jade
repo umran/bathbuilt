@@ -1,4 +1,4 @@
-extends layout
+extends products-layout
 
 block content
   include sidebar.jade
@@ -8,17 +8,17 @@ block content
     div(class="ui vertical product segment")
       div(class="ui stackable grid container")
         .ten.wide.column.product-item
-          img.ui.fluid.image.main-image(src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}')
+          img.ui.fluid.image.main-image(src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}' alt="#{result.entry.fields.name['en-US']}")
           .thumbnails
             .ui.tiny.images
               each image in result.entry.fields.pictures["en-US"]
                 a(href='#')
-                  img.thumb.alternative-image(src='#{image.fields.file["en-US"].url}')
+                  img.thumb.alternative-image(src='#{image.fields.file["en-US"].url}' alt="#{result.entry.fields.name['en-US']}")
         .six.wide.column
           h2
             | #{result.entry.fields.name['en-US']}
           h3.price(id='price')
-            | Please choose from the choices below to see price
+            | To display price, select options below
           article.product-description
             | !{result.entry.fields.specifications["en-US"]}
           form.ui.form.choice(id="options-form")

@@ -337,7 +337,7 @@ function getPrice() {
         $('#price').text('$' + data.response.entry.fields.price['en-US'])
       } else {
         // revert to default
-        $('#price').text('Please choose from the choices below to see price')
+        $('#price').text('To display price, select options below')
       }
     }
   })

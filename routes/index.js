@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
       res.render('error')
       return
     }
-    res.render('index', { title: 'Bath Built', rooms: result[0], stains: result[1], materials: result[2], feature: result[3][0] })
+    res.render('index', { title: 'Bath Built Custom Furniture', rooms: result[0], stains: result[1], materials: result[2], feature: result[3][0] })
   })
 })
 
@@ -76,7 +76,7 @@ router.get('/products/:id', function(req, res, next) {
 
   var id = req.params.id
 
-  data.getProduct(id, function(err, result) {
+  data.getProductBySlug(id, function(err, result) {
     if(err) {
       res.render('error')
       return
@@ -115,7 +115,7 @@ router.get('/about', function(req, res, next) {
       res.render('error')
       return
     }
-    res.render('about', { title: 'Bath Built', rooms: result[0], stains: result[1], materials: result[2], products: result[3] })
+    res.render('about', { title: 'About Us', rooms: result[0], stains: result[1], materials: result[2], products: result[3] })
   })
 })
 
