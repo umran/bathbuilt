@@ -10,7 +10,7 @@ block content
         div(class="ui container" id="cover-text")
           .ui.two.column.grid
             .column(id="masthead-text")
-              a(href="/products/#{feature.cid}")
+              a(href="/products/#{feature.slug}")
                 .featured-details
                   h1(class="ui inverted header title")
                     |#{feature.entry.fields.name["en-US"]}
