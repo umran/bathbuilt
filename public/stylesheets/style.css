@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6, .ui.header.title, .better.header {
   background-position: center center;
   background-repeat: no-repeat;
   /*background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)), url('https://picsum.photos/1000/700/?random');*/
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('http://images.ctfassets.net/3qgfejllni6q/6DipU1ncl2eAakoKwokOOW/c5e7b97a2be4bb64fc8f7c9669b48651/2018-01-15-18-46-18-2.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.ctfassets.net/3qgfejllni6q/6DipU1ncl2eAakoKwokOOW/c5e7b97a2be4bb64fc8f7c9669b48651/2018-01-15-18-46-18-2.jpg');
   padding: 0em 0em;
   min-height: calc(100vh + 2em);
 }
@@ -515,7 +515,7 @@ article > p:first-child {
   }
 
   .ui.masthead.segment.home {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('http://images.ctfassets.net/3qgfejllni6q/4JDjXN7HLGuMIAE4ye222y/0ea79436e8e5036a1677ceb2fad7c8e3/20171222_173033-2.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.ctfassets.net/3qgfejllni6q/4JDjXN7HLGuMIAE4ye222y/0ea79436e8e5036a1677ceb2fad7c8e3/20171222_173033-2.jpg');
   }
 }
 
