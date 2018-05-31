@@ -7,7 +7,7 @@ div(class="ui vertical subfol segment")
             |Products
           .ui.inverted.link.list
             each room in rooms
-              a.item(href='/rooms/#{room.cid}')
+              a.item(href='/rooms/#{room.slug}')
                 |#{room.entry.fields.name["en-US"]}
         .column
           h4.ui.inverted.header

@@ -13,11 +13,11 @@ mongoose.connection.on('disconnected', function(){
   console.log("Connection to mongodb disconnected")
 })
 
-data.getProductsByRoom("2r5IpaRMze2cQiIYkOOca8", function(err, res) {
+data.getStainBySlug("Kona", function(err, res) {
   if(err) {
     console.log(err)
     return
   }
 
-  console.log(res)
+  console.log(res[4])
 })

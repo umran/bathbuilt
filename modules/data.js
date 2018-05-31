@@ -23,7 +23,7 @@ mongoose.connection.on('disconnected', function(){
 
 exports.updateEntry = function(cid, entry, type, callback) {
   var hash = crypto.sha256(JSON.stringify(entry))
-  if (type == 'product' || type == 'rooms') {
+  if (type == 'product' || type == 'rooms' || type == 'stains' || type == 'materials' || type == 'sets') {
     var entry_slug = slug(entry.fields.name['en-US'])
   }
   Entry.findOne({cid: cid}, function(err, res) {
@@ -145,6 +145,46 @@ exports.getProductsByRoom = function(id, callback) {
   })
 }
 
+exports.getProductsByRoomSlug = function(slug, callback) {
+  // first get cid
+  exports.getEntry({slug: slug, type: "rooms"}, function(error, result) {
+    if(error) {
+      callback(error)
+      return
+    }
+
+    if(result.length == 0) {
+      var dataError = new Error('Not Found');
+      callback(dataError)
+      return
+    }
+
+    var id = result[0].cid
+    var roomDetails = result
+
+    Entry.aggregate([{
+      $unwind : "$entry.fields.rooms.en-US"
+    },
+    {
+      $match: {
+        "entry.fields.rooms.en-US.sys.id": id
+      }
+    }, {
+      $sort: {
+        "entry.fields.name.en-US": 1
+      }
+    }], function(err, res) {
+      if (err) {
+        callback(err)
+        return
+      }
+
+      callback(null, [roomDetails, res])
+    })
+
+  })
+}
+
 exports.getProductsByStain = function(id, callback) {
   Entry.aggregate([{
     $unwind : "$entry.fields.stains.en-US"
@@ -152,6 +192,10 @@ exports.getProductsByStain = function(id, callback) {
   {
     $match: {
       "entry.fields.stains.en-US.sys.id": id
+    }
+  }, {
+    $sort: {
+      "entry.fields.name.en-US": 1
     }
   }], function(err, res) {
     if (err) {
@@ -163,6 +207,46 @@ exports.getProductsByStain = function(id, callback) {
   })
 }
 
+exports.getProductsByStainSlug = function(slug, callback) {
+  // first get cid
+  exports.getEntry({slug: slug, type: "stains"}, function(error, result) {
+    if(error) {
+      callback(error)
+      return
+    }
+
+    if(result.length == 0) {
+      var dataError = new Error('Not Found');
+      callback(dataError)
+      return
+    }
+
+    var id = result[0].cid
+    var stainDetails = result
+
+    Entry.aggregate([{
+      $unwind : "$entry.fields.stains.en-US"
+    },
+    {
+      $match: {
+        "entry.fields.stains.en-US.sys.id": id
+      }
+    }, {
+      $sort: {
+        "entry.fields.name.en-US": 1
+      }
+    }], function(err, res) {
+      if (err) {
+        callback(err)
+        return
+      }
+
+      callback(null, [stainDetails, res])
+    })
+
+  })
+}
+
 exports.getProductsByMaterial = function(id, callback) {
   Entry.aggregate([{
     $unwind : "$entry.fields.materials.en-US"
@@ -171,6 +255,10 @@ exports.getProductsByMaterial = function(id, callback) {
     $match: {
       "entry.fields.materials.en-US.sys.id": id
     }
+  }, {
+    $sort: {
+      "entry.fields.name.en-US": 1
+    }
   }], function(err, res) {
     if (err) {
       callback(err)
@@ -178,6 +266,108 @@ exports.getProductsByMaterial = function(id, callback) {
     }
 
     callback(null, res)
+  })
+}
+
+exports.getProductsByMaterialSlug = function(slug, callback) {
+  // first get cid
+  exports.getEntry({slug: slug, type: "materials"}, function(error, result) {
+    if(error) {
+      callback(error)
+      return
+    }
+
+    if(result.length == 0) {
+      var dataError = new Error('Not Found');
+      callback(dataError)
+      return
+    }
+
+    var id = result[0].cid
+    var materialDetails = result
+
+    Entry.aggregate([{
+      $unwind : "$entry.fields.materials.en-US"
+    },
+    {
+      $match: {
+        "entry.fields.materials.en-US.sys.id": id
+      }
+    }, {
+      $sort: {
+        "entry.fields.name.en-US": 1
+      }
+    }], function(err, res) {
+      if (err) {
+        callback(err)
+        return
+      }
+
+      callback(null, [materialDetails, res])
+    })
+
+  })
+}
+
+exports.getProductsBySet = function(id, callback) {
+  Entry.aggregate([{
+    $unwind : "$entry.fields.sets.en-US"
+  },
+  {
+    $match: {
+      "entry.fields.sets.en-US.sys.id": id
+    }
+  }, {
+    $sort: {
+      "entry.fields.name.en-US": 1
+    }
+  }], function(err, res) {
+    if (err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
+exports.getProductsBySetSlug = function(slug, callback) {
+  // first get cid
+  exports.getEntry({slug: slug, type: "sets"}, function(error, result) {
+    if(error) {
+      callback(error)
+      return
+    }
+
+    if(result.length == 0) {
+      var dataError = new Error('Not Found');
+      callback(dataError)
+      return
+    }
+
+    var id = result[0].cid
+    var setDetails = result
+
+    Entry.aggregate([{
+      $unwind : "$entry.fields.sets.en-US"
+    },
+    {
+      $match: {
+        "entry.fields.sets.en-US.sys.id": id
+      }
+    }, {
+      $sort: {
+        "entry.fields.name.en-US": 1
+      }
+    }], function(err, res) {
+      if (err) {
+        callback(err)
+        return
+      }
+
+      callback(null, [setDetails, res])
+    })
+
   })
 }
 
@@ -233,7 +423,7 @@ exports.getHome = function(callback) {
   })
 }
 
-exports.getProductById = function(id, callback) {
+exports.getProduct = function(id, callback) {
   async.parallel([function(cb) {
     exports.getAllRooms(cb)
   }, function(cb) {
@@ -292,6 +482,32 @@ exports.getRoom = function(id, callback) {
   })
 }
 
+exports.getRoomBySlug = function(slug, callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getProductsByRoomSlug(slug, cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    var formattedRes = []
+    formattedRes[0] = res[0]
+    formattedRes[1] = res[1]
+    formattedRes[2] = res[2]
+    formattedRes[3] = res[3][0]
+    formattedRes[4] = res[3][1]
+
+    callback(null, formattedRes)
+  })
+}
+
 exports.getStain = function(id, callback) {
   async.parallel([function(cb) {
     exports.getAllRooms(cb)
@@ -313,6 +529,32 @@ exports.getStain = function(id, callback) {
   })
 }
 
+exports.getStainBySlug = function(slug, callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getProductsByStainSlug(slug, cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    var formattedRes = []
+    formattedRes[0] = res[0]
+    formattedRes[1] = res[1]
+    formattedRes[2] = res[2]
+    formattedRes[3] = res[3][0]
+    formattedRes[4] = res[3][1]
+
+    callback(null, formattedRes)
+  })
+}
+
 exports.getMaterial = function(id, callback) {
   async.parallel([function(cb) {
     exports.getAllRooms(cb)
@@ -331,6 +573,79 @@ exports.getMaterial = function(id, callback) {
     }
 
     callback(null, res)
+  })
+}
+
+exports.getMaterialBySlug = function(slug, callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getProductsByMaterialSlug(slug, cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    var formattedRes = []
+    formattedRes[0] = res[0]
+    formattedRes[1] = res[1]
+    formattedRes[2] = res[2]
+    formattedRes[3] = res[3][0]
+    formattedRes[4] = res[3][1]
+
+    callback(null, formattedRes)
+  })
+}
+
+exports.getSet = function(id, callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getEntry({cid: id, type: "materials"}, cb)
+  }, function(cb) {
+    exports.getProductsBySet(id, cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
+exports.getSetBySlug = function(slug, callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getProductsBySetSlug(slug, cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    var formattedRes = []
+    formattedRes[0] = res[0]
+    formattedRes[1] = res[1]
+    formattedRes[2] = res[2]
+    formattedRes[3] = res[3][0]
+    formattedRes[4] = res[3][1]
+
+    callback(null, formattedRes)
   })
 }
 

@@ -1,4 +1,16 @@
 extends layout
 
 block content
-  h1 Sorry! The page you are looking for does not exist
+  include sidebar.jade
+  div.pusher
+    include menu-alt.jade
+
+    .ui.masthead.segment.error.musk(style=("background-image:none; background:none;"))
+      .ui.stackable.three.column.centered.grid.container
+        .column
+          .featured-details.rooms
+            h1.musk-header Oops! Looks like the page you are looking for does not exist!
+
+    include footer.jade
+block scripts
+  script(src="/javascripts/bathbuilt.js")

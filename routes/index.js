@@ -10,7 +10,10 @@ var showdown  = require('showdown')
 router.get('/', function(req, res, next) {
   data.getHome(function(err, result){
     if(err) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
     res.render('index', { title: 'Bath Built Custom Furniture', rooms: result[0], stains: result[1], materials: result[2], feature: result[3][0] })
@@ -20,14 +23,20 @@ router.get('/', function(req, res, next) {
 router.get('/rooms/:id', function(req, res, next) {
   var id = req.params.id
 
-  data.getRoom(id, function(err, result) {
+  data.getRoomBySlug(id, function(err, result) {
     if(err) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
     if(result[3].length == 0) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
@@ -38,14 +47,20 @@ router.get('/rooms/:id', function(req, res, next) {
 router.get('/stains/:id', function(req, res, next) {
   var id = req.params.id
 
-  data.getStain(id, function(err, result) {
+  data.getStainBySlug(id, function(err, result) {
     if(err) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
     if(result[3].length == 0) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
@@ -56,14 +71,20 @@ router.get('/stains/:id', function(req, res, next) {
 router.get('/materials/:id', function(req, res, next) {
   var id = req.params.id
 
-  data.getMaterial(id, function(err, result) {
+  data.getMaterialBySlug(id, function(err, result) {
     if(err) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
     if(result[3].length == 0) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
@@ -78,12 +99,18 @@ router.get('/products/:id', function(req, res, next) {
 
   data.getProductBySlug(id, function(err, result) {
     if(err) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
     if(result[3].length == 0) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
 
@@ -101,7 +128,10 @@ router.get('/products/:id', function(req, res, next) {
 router.get('/testimonials', function(req, res, next) {
   data.getTestimonialPage(function(err, result){
     if(err) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
     res.render('testimonials', { title: 'Testimonials', rooms: result[0], stains: result[1], materials: result[2], testimonials: result[3] })
@@ -112,7 +142,10 @@ router.get('/testimonials', function(req, res, next) {
 router.get('/about', function(req, res, next) {
   data.getHome(function(err, result){
     if(err) {
-      res.render('error')
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
       return
     }
     res.render('about', { title: 'About Us', rooms: result[0], stains: result[1], materials: result[2], products: result[3] })
