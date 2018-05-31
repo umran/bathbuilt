@@ -5,15 +5,14 @@ block content
   div(class="pusher")
     include menu-home.jade
 
-    div(id="carousel")
-      div(class="ui vertical masthead segment home")
-        div(class="ui container" id="cover-text")
-          .ui.two.column.grid
-            //-.column(id="masthead-text")
-              a(href="/products/#{feature.slug}")
-                .featured-details
-                  h1(class="ui inverted header title")
-                    |#{feature.entry.fields.name["en-US"]}
+    div(class="ui vertical masthead segment home")
+      div(class="ui container" id="cover-text")
+        .ui.two.column.grid
+          //-.column(id="masthead-text")
+            a(href="/products/#{feature.slug}")
+              .featured-details
+                h1(class="ui inverted header title")
+                  |#{feature.entry.fields.name["en-US"]}
 
     div(class="ui vertical showcase segment")
       div(class="ui text container")
