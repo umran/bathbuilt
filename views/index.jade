@@ -5,11 +5,11 @@ block content
   div(class="pusher")
     include menu-home.jade
 
-    span(id="carousel")
-      div(class="ui vertical masthead segment home" style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + feature.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
+    div(id="carousel")
+      div(class="ui vertical masthead segment home")
         div(class="ui container" id="cover-text")
           .ui.two.column.grid
-            .column(id="masthead-text")
+            //-.column(id="masthead-text")
               a(href="/products/#{feature.slug}")
                 .featured-details
                   h1(class="ui inverted header title")
@@ -21,7 +21,7 @@ block content
           h1.ui.header.title
             |Welcome to Bath Built
           h2.ui.header
-            |Custom Furniture made locally in Abbotsford, BC
+            |Custom Furniture Made Locally in Abbotsford, BC
 
     div(class="ui vertical showcase segment")
       div(class="ui stackable three column centered grid container")

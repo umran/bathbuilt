@@ -332,7 +332,7 @@ function getPrice() {
     url: "/get-price",
     data: formData,
     success: function(data){
-      if(data.status == 'success' && data.response.entry) {
+      if(data.status == 'success' && data.response) {
         // change price
         $('#price').text('$' + data.response.entry.fields.price['en-US'])
       } else {

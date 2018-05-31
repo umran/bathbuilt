@@ -120,6 +120,10 @@ exports.getProductsByRoom = function(id, callback) {
     $match: {
       "entry.fields.rooms.en-US.sys.id": id
     }
+  }, {
+    $sort: {
+      "entry.fields.name.en-US": 1
+    }
   }], function(err, res) {
     if (err) {
       callback(err)

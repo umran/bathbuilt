@@ -13,8 +13,8 @@ mongoose.connection.on('disconnected', function(){
   console.log("Connection to mongodb disconnected")
 })
 
-data.getRandomProducts(1, function(err, res){
-  if(err){
+data.getProductsByRoom("2r5IpaRMze2cQiIYkOOca8", function(err, res) {
+  if(err) {
     console.log(err)
     return
   }
