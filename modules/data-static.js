@@ -13,7 +13,7 @@ var config = require('../config')
 exports.updateEntry = function(cid, entry, type, callback) {
   var hash = crypto.sha256(JSON.stringify(entry))
   if (type == 'product' || type == 'rooms' || type == 'stains' || type == 'materials' || type == 'sets') {
-    var entry_slug = slug(entry.fields.name['en-US'])
+    var entry_slug = slug(entry.fields.name['en-US'], {lower: true})
   }
   Entry.findOne({cid: cid}, function(err, res) {
     if (err) {

@@ -22,6 +22,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/rooms/:id', function(req, res, next) {
   var id = req.params.id
+  id = id.toLowerCase()
 
   data.getRoomBySlug(id, function(err, result) {
     if(err) {
@@ -46,6 +47,7 @@ router.get('/rooms/:id', function(req, res, next) {
 
 router.get('/stains/:id', function(req, res, next) {
   var id = req.params.id
+  id = id.toLowerCase()
 
   data.getStainBySlug(id, function(err, result) {
     if(err) {
@@ -70,6 +72,7 @@ router.get('/stains/:id', function(req, res, next) {
 
 router.get('/materials/:id', function(req, res, next) {
   var id = req.params.id
+  id = id.toLowerCase()
 
   data.getMaterialBySlug(id, function(err, result) {
     if(err) {
@@ -96,6 +99,7 @@ router.get('/products/:id', function(req, res, next) {
   var converter = new showdown.Converter()
 
   var id = req.params.id
+  id = id.toLowerCase()
 
   data.getProductBySlug(id, function(err, result) {
     if(err) {
