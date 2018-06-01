@@ -17,22 +17,28 @@ module.exports = function(post, callback) {
 
       //send mail
       var orderType = 'Regular Order'
-      if(clean.post.custom == true) {
+      var successMessage = 'Your order has been received. Bath Built will get back to you shortly!'
+      if(clean.post.custom == 1) {
         orderType = 'Custom Order'
+        successMessage = 'Your custom request has been received. Bath Built will get back to you shortly!'
       }
 
-      var messageContent = '<p>'+clean.post.email+'</p><p>'+clean.post.phone+'</p><p>'+clean.post.product+'</p>'
+      var messageContent = '<p> Name: '+clean.post.name+'</p><p>Email: '+clean.post.email+'</p><p>Phone: '+clean.post.phone+'</p><p>Product: '+clean.post.product+'</p><p> Quantity: '+clean.post.quantity+'</p>'
 
       if(clean.post.size) {
-        messageContent += '<p>'+clean.post.size+'</p>'
+        messageContent += '<p>Size: '+clean.post.size+'</p>'
       }
 
       if(clean.post.material) {
-        messageContent += '<p>'+clean.post.material+'</p>'
+        messageContent += '<p>Material: '+clean.post.material+'</p>'
       }
 
       if(clean.post.stain) {
-        messageContent += '<p>'+clean.post.stain+'</p>'
+        messageContent += '<p>Stain: '+clean.post.stain+'</p>'
+      }
+
+      if(clean.post.details) {
+        messageContent += '<p>Details: '+clean.post.details+'</p>'
       }
 
       var mailOptions = {
@@ -52,7 +58,7 @@ module.exports = function(post, callback) {
 
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-        callback(null, {status: "success", message: res.message})
+        callback(null, {status: "success", message: successMessage})
       })
 
     })

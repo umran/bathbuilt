@@ -690,7 +690,7 @@ exports.createOrder = function(entry, callback) {
       return
     }
 
-    callback(null, {message: 'Your order has been placed. Bath Built will get back to you shortly. Thank you!'})
+    callback(null, {status: 200})
   })
 }
 

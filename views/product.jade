@@ -22,7 +22,8 @@ block content
           article.product-description(itemprop="description")
             | !{result.entry.fields.specifications["en-US"]}
           form.ui.form.choice(id="options-form")
-            input(type="hidden" value="#{result.entry.sys.id}" id="product-id")
+            input(type="hidden" name='product-id' id="product-id" value="#{result.entry.sys.id}")
+            input(type="hidden" name="product-name" id="product-name" value="#{result.entry.fields.name['en-US']}")
             if result.entry.fields.stains
               .field(id='stainsOption').prompt
                 .ui.fluid.selection.dropdown
@@ -64,16 +65,35 @@ block content
 
     .ui.modal(id='modal-customize')
       .header
-        |Please fill out this form and we will send you an invoice to process your order.
+        |Please fill out this form and we will send you an e-invoice to process your order.
       .content
         .ui.form.contact(id='customizeForm')
           .field.prompt
+            label Name
+            input(type='text' name='name' id='name-customize')
+          .field.prompt
             label Email
             input(type='email' name='email' id='email-customize')
-            input(type="hidden" name="product" id="product-customize" value="#{result.entry.fields.name['en-US']}")
           .field.prompt
             label Phone
             input(type='text' name='phone' id='phone-customize')
+          .field.prompt
+            label Quantity
+            .ui.fluid.selection.dropdown
+              input(type='hidden', name='quantity', id='quantity-customize')
+              i.dropdown.icon
+              .default.text Select Quantity
+              .menu
+                .item(data-value='1')
+                  |1
+                .item(data-value='2')
+                  |2
+                .item(data-value='3')
+                  |3
+                .item(data-value='4')
+                  |4
+                .item(data-value='5')
+                  |5
           //-if result.entry.fields.stains
             .field(id='stainsOption').prompt
               .ui.fluid.selection.dropdown
@@ -113,16 +133,35 @@ block content
 
     .ui.modal(id='modal-order')
       .header
-        |Please fill out this form and we will send you an invoice to process your order.
+        |Please fill out this form and we will send you an e-invoice to process your order.
       .content
         .ui.form.contact(id='orderForm')
           .field.prompt
+            label Name
+            input(type='text' name='name' id='name-order')
+          .field.prompt
             label Email
             input(type='email' name='email' id='email-order')
-            input(type="hidden" name="product" id="product-order" value="#{result.entry.fields.name['en-US']}")
           .field.prompt
             label Phone
             input(type='text' name='phone' id='phone-order')
+          .field.prompt
+            label Quantity
+            .ui.fluid.selection.dropdown
+              input(type='hidden', name='quantity', id='quantity-order')
+              i.dropdown.icon
+              .default.text Select Quantity
+              .menu
+                .item(data-value='1')
+                  |1
+                .item(data-value='2')
+                  |2
+                .item(data-value='3')
+                  |3
+                .item(data-value='4')
+                  |4
+                .item(data-value='5')
+                  |5
           //-if result.entry.fields.stains
             .field(id='stainsOption').prompt
               .ui.fluid.selection.dropdown
@@ -158,8 +197,6 @@ block content
           .ui.green.submit.button(id='order-submit') Submit
 
     .ui.modal(id='modal-final')
-      //-.header
-        |Please fill out this form and we will send you an invoice to process your order.
       .content
         .ui.message(id='final-message')
           .header(id='final-message-text')

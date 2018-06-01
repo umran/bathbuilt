@@ -13,27 +13,31 @@ $(document).ready(function() {
   })
 
   var validatedOrderFields = {
+    name: 'empty',
     email: 'empty',
-    phone: 'empty'
+    phone: 'empty',
+    quantity: 'empty'
   }
 
   var validatedCustomizeFields = {
+    name: 'empty',
     email: 'empty',
     phone: 'empty',
-    details: 'empty'
+    details: 'empty',
+    quantity: 'empty'
   }
 
   $('#orderForm')
   .form({
     fields: validatedOrderFields,
-    inline: true,
+    inline: false,
     on: blur
   })
 
   $('#customizeForm')
   .form({
     fields: validatedCustomizeFields,
-    inline: true,
+    inline: false,
     on: blur
   })
 
@@ -228,16 +232,18 @@ function adjustCatHeight() {
 // form functions
 $('#orderForm').submit(function(e) {
 
-  if(!$('#email-order').val() || !$('#phone-order').val()) {
+  if(!$('#name-order').val() || !$('#email-order').val() || !$('#phone-order').val() || !$('#quantity-order').val()) {
     console.log('some fields not complete')
     return
   }
 
   var formData = {
-    product: $('#product-order').val(),
-    custom: false,
+    product: $('#product-name').val(),
+    custom: 0,
+    name: $('#name-order').val(),
     email: $('#email-order').val(),
-    phone: $('#phone-order').val()
+    phone: $('#phone-order').val(),
+    quantity: $('#quantity-order').val()
   }
 
   if ($('#default-size').length > 0) {
@@ -260,16 +266,18 @@ $('#orderForm').submit(function(e) {
 
 $('#customizeForm').submit(function(e) {
 
-  if(!$('#email-customize').val() || !$('#phone-customize').val() || !$('#details-customize').val()) {
+  if(!$('#name-customize').val() || !$('#email-customize').val() || !$('#phone-customize').val() || !$('#details-customize').val() || !$('#quantity-customize').val()) {
     console.log('some fields not complete')
     return
   }
 
   var formData = {
-    product: $('#product-customize').val(),
-    custom: true,
+    product: $('#product-name').val(),
+    custom: 1,
+    name: $('#name-customize').val(),
     email: $('#email-customize').val(),
     phone: $('#phone-customize').val(),
+    quantity: $('#quantity-customize').val(),
     details: $('#details-customize').val()
   }
 

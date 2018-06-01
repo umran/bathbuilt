@@ -4,8 +4,10 @@ var mongoose = require('mongoose')
 var orderSchema = new mongoose.Schema({
   product: {type: String, required: true, es_indexed: true, es_index: 'not_analyzed'},
   custom: {type: Boolean, required: true, es_indexed: false},
+  name: {type: String, required: true, es_indexed: true, es_index: 'not_analyzed'},
   email: {type: String, required: true, es_indexed: true, es_index: 'not_analyzed'},
   phone: {type: String, required: true, es_indexed: true, es_index: 'not_analyzed'},
+  quantity: {type: Number, required: true, es_indexed: true, es_index: 'not_analyzed'},
   size: {type: String, required: false, es_indexed: true, es_index: 'not_analyzed'},
   material: {type: String, required: false, es_indexed: true, es_index: 'not_analyzed'},
   stain: {type: String, required: false, es_indexed: true, es_index: 'not_analyzed'},
