@@ -11,7 +11,8 @@ module.exports = function(post, callback) {
 
     data.createOrder(clean.post, function(err, res) {
       if (err) {
-        callback({status: "error", message: err})
+        console.log(err)
+        callback({status: "error", message: 'Oops! Something went wrong. We are looking into it.'})
         return
       }
 
@@ -51,7 +52,8 @@ module.exports = function(post, callback) {
 
       mailer.sendMail(mailOptions, (error, info) => {
         if (error) {
-          callback({status: "error", message: error})
+          console.log(error)
+          callback({status: "error", message: 'Oops! Something went wrong. We are looking into it.'})
           return
         }
         console.log('Message sent: %s', info.messageId);

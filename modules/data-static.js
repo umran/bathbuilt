@@ -5,6 +5,7 @@ var Product = require('../models/product')
 var Room = require('../models/room')
 var Entry = require('../models/entry')
 var Order = require('../models/order')
+var Inquiry = require('../models/inquiry')
 var crypto = require('./crypto_primitives')
 var slug = require("slug")
 
@@ -638,6 +639,23 @@ exports.getSetBySlug = function(slug, callback) {
   })
 }
 
+exports.getStainsPalette = function(callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
 exports.getAllTestimonials = function(callback) {
   Entry.find({type: "testimonial"}).sort({date_modified: -1}).exec(function(err, res) {
     if(err) {
@@ -668,18 +686,20 @@ exports.getTestimonialPage = function(callback) {
   })
 }
 
-exports.createOrder = function(entry, callback) {
-  entry.date_created = new Date()
-  var newOrder = new Order(entry)
-
-  newOrder.save(function(err){
+exports.getStaticPage = function(callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }], function(err, res) {
     if(err) {
-      console.log(err)
-      callback('something went wrong')
+      callback(err)
       return
     }
 
-    callback(null, {status: 200})
+    callback(null, res)
   })
 }
 
@@ -700,6 +720,36 @@ exports.getPrice = function(data, callback) {
     }
 
     callback(null, res)
+  })
+}
+
+exports.createOrder = function(entry, callback) {
+  entry.date_created = new Date()
+  var newOrder = new Order(entry)
+
+  newOrder.save(function(err){
+    if(err) {
+      console.log(err)
+      callback('something went wrong')
+      return
+    }
+
+    callback(null, {status: 200})
+  })
+}
+
+exports.createInquiry = function(entry, callback) {
+  entry.date_created = new Date()
+  var newInquiry = new Inquiry(entry)
+
+  newInquiry.save(function(err){
+    if(err) {
+      console.log(err)
+      callback('something went wrong')
+      return
+    }
+
+    callback(null, {status: 200})
   })
 }
 

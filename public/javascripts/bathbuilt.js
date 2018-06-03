@@ -27,6 +27,14 @@ $(document).ready(function() {
     quantity: 'empty'
   }
 
+  var validatedContactFields = {
+    name: 'empty',
+    phone: 'empty',
+    email: 'empty',
+    confirm_email: 'empty',
+    message: 'empty'
+  }
+
   $('#orderForm')
   .form({
     fields: validatedOrderFields,
@@ -38,6 +46,13 @@ $(document).ready(function() {
   .form({
     fields: validatedCustomizeFields,
     inline: false,
+    on: blur
+  })
+
+  $('#contactForm')
+  .form({
+    fields: validatedContactFields,
+    inline: true,
     on: blur
   })
 
@@ -259,7 +274,7 @@ $('#orderForm').submit(function(e) {
   }
 
   console.log(formData.size)
-  submitForm(formData)
+  submitOrderForm(formData)
 
   e.preventDefault()
 })
@@ -294,12 +309,12 @@ $('#customizeForm').submit(function(e) {
   }
 
   console.log(formData.size)
-  submitForm(formData)
+  submitOrderForm(formData)
 
   e.preventDefault()
 })
 
-function submitForm(formData) {
+function submitOrderForm(formData) {
   $.ajax({
     type: "POST",
     url: "/new-order",
@@ -350,3 +365,57 @@ function getPrice() {
     }
   })
 }
+
+/* Contact Form Logic */
+
+$('#contactForm').submit(function(e) {
+  e.preventDefault()
+
+  if(!$('#name-contact').val() || !$('#email-contact').val() || !$('#confirm_email-contact').val() || !$('#phone-contact').val() || !$('#message-contact').val()) {
+    console.log('some fields not complete')
+    return
+  }
+
+  if($('#email-contact').val() != $('#confirm_email-contact').val()) {
+    console.log('email mismatch')
+    $('#contact-error-message').text('Please ensure the email fields match')
+    $('#contact-error').removeClass('hidden')
+    return
+  }
+
+  $('#contact-error').addClass('hidden')
+
+  var formData = {
+    name: $('#name-contact').val(),
+    email: $('#email-contact').val(),
+    confirm_email: $('#confirm_email-contact').val(),
+    phone: $('#phone-contact').val(),
+    message: $('#message-contact').val()
+  }
+
+  submitContactForm(formData)
+})
+
+function submitContactForm(formData) {
+  $.ajax({
+    type: "POST",
+    url: "/new-inquiry",
+    data: formData,
+    success: function(data){
+      if(data.status == 'success') {
+        // close current modal and display new modal
+        $('.ui.modal').modal('hide all')
+        $('#contact-message').addClass('positive')
+        $('#contact-message-text').text(data.message)
+        $('#contact-modal').modal('show')
+      } else {
+        // close current modal and display new modal
+        $('.ui.modal').modal('hide all')
+        $('#contact-message').addClass('negative')
+        $('#contact-message-text').text(data.message)
+        $('#contact-modal').modal('show')
+      }
+    }
+  })
+}
+/* End of Contact Form Logic */

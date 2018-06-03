@@ -1,0 +1,62 @@
+extends contact-layout
+
+block content
+  include sidebar.jade
+  div.pusher
+    include menu-alt.jade
+
+    .contact-content
+      .ui.text.container
+        .local-business
+          .not-address
+            h1 Bath Built Wood Furniture – Contact Information
+            p
+              |Bath Built makes custom solid wood furniture near Vancouver, British Columbia including handmade wooden dining room, living room, and bedroom furniture.
+            p.local-business-header
+              |<strong>Email</strong>
+            p
+              |bathbuiltcustom@gmail.com
+
+          .address
+            p.local-business-header
+              |<strong>Address</strong>
+            address
+              span
+                |Unit 305, 30990 Wheel Ave
+              br
+              span
+                |Abbotsford B.C. Canada
+              br
+              span
+                |V2T 6G7
+
+        h2 To help us serve you better, please complete the form below and we'll get back to you as soon as possible.
+        .contact-form
+          .ui.form.contact(id='contactForm')
+            .field.prompt
+              label Name
+              input(type='text' name='name' id='name-contact')
+            .field.prompt
+              label Phone
+              input(type='text' name='phone' id='phone-contact')
+            .field.prompt
+              label Email
+              input(type='email' name='email' id='email-contact')
+            .field.prompt
+              label Confirm Email
+              input(type='email' name='confirm_email' id='confirm_email-contact')
+            .field.prompt
+              label Message
+              textarea(name='message' id='message-contact')
+            .ui.hidden.negative.message(id='contact-error')
+              p(id='contact-error-message')
+            .ui.green.submit.button(id='contact-submit') Submit
+
+    .ui.modal(id='contact-modal')
+      .content
+        .ui.message(id='contact-message')
+          .header(id='contact-message-text')
+
+    include footer.jade
+block scripts
+  script(src="/javascripts/bathbuilt.js")

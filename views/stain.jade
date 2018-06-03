@@ -27,7 +27,7 @@ block content
       .ui.container
         .ui.four.doubling.cards
           each product in products
-            .card.screv(onclick='location.href="/products/#{product.slug}"')
+            a.card.screv(href="/products/#{product.slug}")
               .image.product(style=("background-image: url('" + product.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
               .content
                 .better.header.centered-text

@@ -1,11 +1,11 @@
-extends layout
+extends about-layout
 
 block content
   include sidebar.jade
   div.pusher
     include menu-alt.jade
 
-    .ui.masthead.segment.about.musk(style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('https://bathbuilt.files.wordpress.com/2017/01/kc_couples_ms-5.jpg?w=2000&h=1200&crop=1');"))
+    .ui.masthead.segment.about.musk(style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('https://images.ctfassets.net/3qgfejllni6q/3DomuE9516AiWUwYSQyYUK/924eeed832b20c73ac19db784bef453c/kc_couples_ms-5.jpg');"))
       .ui.stackable.three.column.centered.grid.container
         .column
           .featured-details.rooms
@@ -13,81 +13,53 @@ block content
 
     .the-team
       .ui.container
-        h1 About Us
+        h1.about
+          |Bath Built Solid Wood Furniture – About Us
+        h2.centered-text.falseone Meet Our Woodworking Team
         .ui.four.stackable.cards
           .card
-            .image.team(style=("background-image: url('https://bathbuilt.files.wordpress.com/2018/05/chris.jpg?w=494&h=676');"))
-              //-img(src='https://bathbuilt.files.wordpress.com/2018/05/chris.jpg?w=494&h=676')
+            .image.team(style=("background-image: url('https://images.ctfassets.net/3qgfejllni6q/6kf0yMd1n2CWqQ8qmkoeCi/ff97f9e5f2a1cb175bec309c306ce654/chris.jpg');"))
             .content
               .header Chris Bath
               .meta
-                span.date Owner
+                span.date Owner, Operations Manager
               .description
-                | The reason our business name may be confusing about what it is we actually do! Chris started in carpentry and soon began building furniture as a hobby. Bath Built was born organically when people began to line up to buy one of his creations.
-            //-.extra.content
-              span.right.floated
-                | Joined in 2011
-              span
-                i.user.icon
-                |         35 Friends
+                |The reason our business name may be confusing about what it is we actually do! Chris Bath started in carpentry and soon began building furniture as a hobby. Bath Built was born organically when people began to line up to buy one of his many handmade, solid wood furniture creations.
           .card
-            .image.team(style=("background-image: url('https://bathbuilt.files.wordpress.com/2018/05/20180512_122150.jpg?w=492&h=742');"))
-              //-img(src='https://bathbuilt.files.wordpress.com/2018/05/20180512_122150.jpg?w=492&h=742')
+            .image.team(style=("background-image: url('https://images.ctfassets.net/3qgfejllni6q/FVjupaX48mUMwA2qku22e/95e7f254fcfd962b86323262c1fc2931/20180512_122150.jpg');"))
             .content
               .header Keara Mager
               .meta
                 a Owner
               .description
                 | Initially contributing to Bath Built by running our social media and website, Keara soon found herself on the back end of a palm sander. She now takes care of many roles at the shop including furniture assembly, and she is our finishing expert.
-            //-.extra.content
-              span.right.floated
-                | Joined in 2014
-              span
-                i.user.icon
-                |         151 Friends
           .card
-            .image.team(style=("background-image: url('https://bathbuilt.files.wordpress.com/2018/05/rick.jpg?w=888&h=500');"))
-              //-img(src='https://bathbuilt.files.wordpress.com/2018/05/rick.jpg?w=888&h=500')
+            .image.team(style=("background-image: url('https://images.ctfassets.net/3qgfejllni6q/6JJsJMZrs4yiiC6ogiqWKg/8de969327004c57d82e15e1e4026b091/rick.jpg');"))
             .content
               .header Rick Speke
               .meta
                 span.date Shop Supervisor
               .description
                 | Since the 90’s Rick has been bringing quality furniture to the homes and businesses around you. He has worked supervisory roles with both small, and very large furniture manufacturers throughout his career. He has now joined Bath Built in our vision to bring the highest quality solid wood furniture to your home.
-            //-.extra.content
-              span.right.floated
-                | Joined in 2011
-              span
-                i.user.icon
-                |         35 Friends
           .card
-            .image.team(style=("background-image: url('https://bathbuilt.files.wordpress.com/2018/05/charlie.jpg?w=500&h=824');"))
-              //-img(src='https://bathbuilt.files.wordpress.com/2018/05/charlie.jpg?w=500&h=824')
+            .image.team(style=("background-image: url('https://images.ctfassets.net/3qgfejllni6q/6N1tVNzaX6w244a4iOMm46/b4b03a071dc5b66835b1d45773e0b15b/charlie.jpg');"))
             .content
               .header Charlie Kendall
               .meta
                 a Shop Hand, Lead Delivery Driver
               .description
                 | Charlie Joined Bath Built January 2018 and helped us welcome in our 2nd year in business. He quickly learned finishing as well as many aspects of furniture assembly. Charlie takes on the daunting task of making sure all of our furniture makes it safely to its new home.
-            //-.extra.content
-              span.right.floated
-                | Joined in 2014
-              span
-                i.user.icon
-                |         151 Friends
 
     article
       h2.centered-text.falseone Our Process
       p
         |All of our products are hand crafted using the best woodworking techniques. This includes the use of multiple high precision planing, jointing, and cutting tools to ensure perfectly square and flat stock to work with. Doing this, accompanied with proper joinery and design methods, allows our pieces to be very stable with low chance of adverse changes over time.
       figure.med-width
-        img(src="https://bathbuilt.files.wordpress.com/2018/04/20180323_142129-2.jpg?w=920&h=&zoom=2")
+        img(src="https://images.ctfassets.net/3qgfejllni6q/5zb6kQdPTqoE80kUQmoIk8/f833074118aafb839b2071a105302b66/20180323_142129-2.jpg")
       p
         |We sand, stain, and seal each piece to have a smooth finish and ensure our table tops are free of nooks and crannies that can trap food and other debris. We can however offer a more rustic finish upon request! Each piece is finished with a food safe finish that is impact and scratch resistant and will hold up to heat and liquid spills.
       p
         |We offer a variety of sizes and stain options, however feel free to e-mail us and we can quote you for a custom order to build something more customized to your needs!
-      //-blockquote
-        |At the end of the meet, as my teammates and I excitedly rummaged through our goodie bags, my first coach rounded us up in a small huddle before awards. Without warning, she leaned in and viscerally shouted, “You were all terrible today!”
       p
         |We look forward to hearing from you!
 

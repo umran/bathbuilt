@@ -3,6 +3,7 @@ var router = express.Router()
 var data = require('../modules/data')
 var utilities = require('../modules/utilities')
 var create_order = require('../modules/create_order')
+var create_inquiry = require('../modules/create_inquiry')
 var get_price = require('../modules/get_price')
 var showdown  = require('showdown')
 
@@ -42,6 +43,22 @@ router.get('/rooms/:id', function(req, res, next) {
     }
 
     res.render('room', { title: result[3][0].entry.fields.name["en-US"], rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
+  })
+})
+
+// stain palette
+router.get('/stains', function(req, res, next) {
+
+  data.getStainsPalette(function(err, result) {
+    if(err) {
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
+      return
+    }
+
+    res.render('stain-palette', { title: 'Stains', rooms: result[0], stains: result[1], materials: result[2]})
   })
 })
 
@@ -144,7 +161,7 @@ router.get('/testimonials', function(req, res, next) {
 
 // static pages
 router.get('/about', function(req, res, next) {
-  data.getHome(function(err, result){
+  data.getStaticPage(function(err, result){
     if(err) {
       var httpError = new Error('Not Found');
       httpError.status = 404;
@@ -152,13 +169,37 @@ router.get('/about', function(req, res, next) {
       //res.render('error')
       return
     }
-    res.render('about', { title: 'About Us', rooms: result[0], stains: result[1], materials: result[2], products: result[3] })
+    res.render('about', { title: 'About Us', rooms: result[0], stains: result[1], materials: result[2] })
+  })
+})
+
+router.get('/contact', function(req, res, next) {
+  data.getStaticPage(function(err, result){
+    if(err) {
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
+      return
+    }
+    res.render('contact', { title: 'Contact Us', rooms: result[0], stains: result[1], materials: result[2] })
   })
 })
 
 // post pages
 router.route('/new-order').post(function(req, res) {
   create_order(req.body, function(err, result){
+    if(err) {
+      res.send(err)
+      return
+    }
+
+    res.send(result)
+  })
+})
+
+router.route('/new-inquiry').post(function(req, res) {
+  create_inquiry(req.body, function(err, result){
     if(err) {
       res.send(err)
       return

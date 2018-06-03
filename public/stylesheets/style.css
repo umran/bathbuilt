@@ -375,6 +375,11 @@ article.product-description {
   text-align: center;
 }
 
+/* Stain Palette Page */
+.stain-content {
+  padding-top: 6em;
+}
+
 /* Testimonials Page */
 .testimonials {
   padding-top: 4em;
@@ -409,6 +414,10 @@ article.product-description {
   line-height: 44px;
   text-align: center;
   margin-bottom: 4rem;
+}
+
+h1.about {
+  font-size: 42px;
 }
 
 /* Article */
@@ -467,13 +476,35 @@ article > p:first-child {
   text-align: center;
 }
 
+/* Contact Us Page */
+.contact-content {
+  padding-top: 6em;
+  padding-bottom: 4em;
+}
+
+.local-business {
+  padding: 2em 0;
+}
+
+.local-business-header {
+  margin-bottom: 0.1em;
+}
+
+.not-address {
+  margin-bottom: 1em;
+}
+
+.contact-form {
+  padding-top: 0.5em;
+  padding-bottom: 2em;
+}
+
 /* Footer Rules */
 .social > .text {
   padding-left: 5px;
 }
 
 /* Error Page */
-/* About Us Page */
 .ui.masthead.segment.error {
   background-size: cover;
   background-position: center center;

@@ -1,0 +1,20 @@
+extends stain-palette-layout
+
+block content
+  include sidebar.jade
+  div.pusher
+    include menu-alt.jade
+
+    .stain-content
+      .ui.container
+        h1.centered-text Stains
+
+      .ui.vertical.showcase.segment.rooms
+        .ui.container
+          .ui.four.doubling.cards
+            each stain in stains
+              a.card.screv(href="/stains/#{stain.slug}")
+                .image.product(style=("background-image: url('" + stain.entry.fields.picture["en-US"].fields.file["en-US"].url + "');"))
+                .content
+                  .better.header.centered-text
+                    |#{stain.entry.fields.name["en-US"]}
