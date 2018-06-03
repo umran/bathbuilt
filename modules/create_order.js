@@ -43,7 +43,7 @@ module.exports = function(post, callback) {
       }
 
       var mailOptions = {
-        from: '"The Website" <bathbuiltcustom@gmx.com>', // sender address
+        from: '"The Website" <bathbuilttemp@gmx.com>', // sender address
         to: 'bathbuiltcustom@gmail.com', // list of receivers
         subject: orderType +': ' + clean.post.product, // Subject line
         text: 'Check HTML message', // plain text body
