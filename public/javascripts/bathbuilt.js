@@ -52,7 +52,7 @@ $(document).ready(function() {
   $('#contactForm')
   .form({
     fields: validatedContactFields,
-    inline: true,
+    inline: false,
     on: blur
   })
 
