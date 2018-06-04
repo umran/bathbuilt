@@ -7,8 +7,9 @@ div(class="ui inverted fixed text menu not-home mobile chameleon" id="cover-menu
         |<i class="fas fa-bars"></i>
 div(class="ui inverted fixed text menu not-home desktop chameleon" id="cover-menu")
   div(class="ui container")
-    a(class="inverted header item" id="universal" href='/')
-      img(src="/images/logo/BathBuiltBlack.png" alt="Bath Built Logo" style="width:128px;")
+    div(itemscope itemtype="http://schema.org/Organization")
+      a(class="inverted header item" id="universal" href='/' itemprop="url")
+        img(src="/images/logo/BathBuiltBlack.png" alt="Bath Built Logo" style="width:128px;" itemprop="logo")
     div(class="right menu")
       a(class="ui pointing dropdown link item")
         |Products

@@ -8,8 +8,9 @@ div(class="ui top fixed inverted text menu mobile chameleon" id="cover-menu-mobi
 
 div(class="ui top fixed inverted text menu desktop chameleon" id="cover-menu")
   div(class="ui container")
-    a(class="inverted header item" id="universal" href='/')
-      img(class="chameleon-logo" id="home-logo" src="/images/logo/bathbuilt128.png" alt="Bath Built Logo" style="width:128px;")
+    div(itemscope itemtype="http://schema.org/Organization")
+      a(class="inverted header item" id="universal" href='/' itemprop="url")
+        img(class="chameleon-logo" id="home-logo" src="/images/logo/bathbuilt128.png" alt="Bath Built Logo" style="width:128px;" itemprop="logo")
     div(class="right menu")
       a(class="ui pointing dropdown link item")
         |Products
