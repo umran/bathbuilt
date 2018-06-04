@@ -11,19 +11,8 @@ block content
           .featured-details.rooms
             h1(class="ui inverted header title").musk-header
               |#{result.entry.fields.name["en-US"]}
-            //h2.ui.inverted.header
-              |Dining Set
 
     .ui.vertical.showcase.segment.rooms
-      //-div(class="ui stackable grid container")
-        each product in products
-          .four.wide.column.screv
-            a(href='/products/#{product.cid}')
-              .ui.showcase-item.segment(style=("background-image: url('" + product.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
-              .ui.showcase-item-excerpt.segment.cat
-                h2.ui.header.title.cat-header
-                  |#{product.entry.fields.name["en-US"]}
-
       .ui.container
         .ui.four.doubling.cards
           each product in products

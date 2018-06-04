@@ -1,13 +1,16 @@
 .ui.left.vertical.menu.sidebar.mobile
   .item
     .header
-      |Rooms
+      |Products
     .menu
       each room in rooms
         a.item(href='/rooms/#{room.slug}')
-          //img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
+          //-img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
           span.line-text
             |#{room.entry.fields.name["en-US"]}
+      a.item(href='/stains')
+        span.line-text
+          |Stains
   .item
     .header
       |General
@@ -18,19 +21,16 @@
       a.item(href='/testimonials')
         span.line-text
           |Testimonials
-      //-a.item(href='#')
+      a.item(href='/contact')
         span.line-text
           |Inquiries
-      //-a.item(href='#')
-        span.line-text
-          |Disclaimer
   //-.item
     .header
       |Stains
     .menu
       each stain in stains
         a.item(href='/stains/#{stain.slug}')
-          //img.ui.mini.avatar.image.menu(src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+          //-img.ui.mini.avatar.image.menu(src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
           span.line-text
             |#{stain.entry.fields.name["en-US"]}
   //-.item
@@ -39,6 +39,6 @@
     .menu
       each material in materials
         a.item(href='/materials/#{material.slug}')
-          //img.ui.mini.avatar.image.menu(src='#{material.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+          //-img.ui.mini.avatar.image.menu(src='#{material.entry.fields.picture["en-US"].fields.file["en-US"].url}')
           span.line-text
             |#{material.entry.fields.name["en-US"]}

@@ -1,0 +1,26 @@
+.ui.fluid.popup.bottom.transition.hidden
+  .ui.three.column.relaxed.equal.height.divided.grid
+    .column
+      h2.ui.header.title Rooms
+      .ui.link.list
+        each room in rooms
+          a.item(href='/rooms/#{room.slug}')
+            //-img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
+            span.line-text
+              |#{room.entry.fields.name["en-US"]}
+    //-.column
+      h2.ui.header.title Stains
+      .ui.link.list
+        each stain in stains
+          a.item(href='/stains/#{stain.slug}')
+            img.ui.mini.avatar.image.menu(src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+            span.line-text
+              |#{stain.entry.fields.name["en-US"]}
+    //-.column
+      h2.ui.header.title Materials
+      .ui.link.list
+        each material in materials
+          a.item(href='/materials/#{material.slug}')
+            img.ui.mini.avatar.image.menu(src='#{material.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+            span.line-text
+              |#{material.entry.fields.name["en-US"]}

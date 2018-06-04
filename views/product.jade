@@ -94,42 +94,11 @@ block content
                   |4
                 .item(data-value='5')
                   |5
-          //-if result.entry.fields.stains
-            .field(id='stainsOption').prompt
-              .ui.fluid.selection.dropdown
-                input(type='hidden', name='stains')
-                i.dropdown.icon
-                .default.text Select Stain
-                .menu
-                  each stain in result.entry.fields.stains["en-US"]
-                    .item(data-value='#{stain.fields.name["en-US"]}')
-                      img.ui.mini.avatar.image(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
-                      |#{stain.fields.name["en-US"]}
-          //-if result.entry.fields.materials
-            .field(id='materialsOption').prompt
-              .ui.fluid.selection.dropdown
-                input(type='hidden', name='materials')
-                i.dropdown.icon
-                .default.text Select Material
-                .menu
-                  each material in result.entry.fields.materials["en-US"]
-                    .item(data-value='#{material.fields.name["en-US"]}')
-                      img.ui.mini.avatar.image(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
-                      |#{material.fields.name["en-US"]}
-          //-if result.entry.fields.size
-            .field(id='sizeOption').prompt
-              .ui.fluid.selection.dropdown
-                input(type='hidden', name='size')
-                i.dropdown.icon
-                .default.text Select Size
-                .menu
-                  each size in result.entry.fields.size["en-US"]
-                    .item(data-value='#{size.fields.name["en-US"]}')
-                      |#{size.fields.name["en-US"]}
           .field.prompt
             label Details
             textarea(name='details' id='details-customize')
           .ui.green.submit.button(id='customize-submit') Submit
+          .ui.red.cancel.button(id='customize-cancel') Cancel
 
     .ui.modal(id='modal-order')
       .header
@@ -162,41 +131,10 @@ block content
                   |4
                 .item(data-value='5')
                   |5
-          //-if result.entry.fields.stains
-            .field(id='stainsOption').prompt
-              .ui.fluid.selection.dropdown
-                input(type='hidden', name='stains')
-                i.dropdown.icon
-                .default.text Select Stain
-                .menu
-                  each stain in result.entry.fields.stains["en-US"]
-                    .item(data-value='#{stain.fields.name["en-US"]}')
-                      img.ui.mini.avatar.image(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
-                      |#{stain.fields.name["en-US"]}
-          //-if result.entry.fields.materials
-            .field(id='materialsOption').prompt
-              .ui.fluid.selection.dropdown
-                input(type='hidden', name='materials')
-                i.dropdown.icon
-                .default.text Select Material
-                .menu
-                  each material in result.entry.fields.materials["en-US"]
-                    .item(data-value='#{material.fields.name["en-US"]}')
-                      img.ui.mini.avatar.image(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
-                      |#{material.fields.name["en-US"]}
-          //-if result.entry.fields.size
-            .field(id='sizeOption').prompt
-              .ui.fluid.selection.dropdown
-                input(type='hidden', name='size')
-                i.dropdown.icon
-                .default.text Select Size
-                .menu
-                  each size in result.entry.fields.size["en-US"]
-                    .item(data-value='#{size.fields.name["en-US"]}')
-                      |#{size.fields.name["en-US"]}
           .ui.green.submit.button(id='order-submit') Submit
+          .ui.red.cancel.button(id='order-cancel') Cancel
 
-    .ui.modal(id='modal-final')
+    .ui.basic.modal(id='modal-final')
       .content
         .ui.message(id='final-message')
           .header(id='final-message-text')

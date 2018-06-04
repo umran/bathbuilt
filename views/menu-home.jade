@@ -17,57 +17,18 @@ div(class="ui top fixed inverted text menu desktop chameleon" id="cover-menu")
         div(class="menu")
           each room in rooms
             div.item(onclick='location.href="/rooms/#{room.slug}"')
-              //img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
+              //-img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
               span.line-text
                 |#{room.entry.fields.name["en-US"]}
       //-a(class="browse item product")
         |Products
-      //a(class="browse item")
+      a(class="item" href="/stains")
         |Stains
-        //i(class="dropdown icon")
       a(class="item" href="/about")
         |About Us
       a(class="browse item" href="/testimonials")
         |Testimonials
-      //-a(class="item")
+      a(class="item" href="/contact")
         |Inquiries
-      //-a(class="browse item")
-        |Disclaimer
-      //div(class="item")
-        //button(class="ui inverted blue button")
-          |Inquiries
-        button(class="ui inverted blue button")
-          |Customize
-    .ui.fluid.popup.bottom.transition.hidden
-      .ui.three.column.relaxed.equal.height.divided.grid
-        .column
-          h2.ui.header.title Rooms
-          .ui.link.list
-            each room in rooms
-              a.item(href='/rooms/#{room.slug}')
-                //img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
-                span.line-text
-                  |#{room.entry.fields.name["en-US"]}
-        //.column
-          h2.ui.header.title Size
-          .ui.link.list
-            a.item Small
-            a.item Medium
-            a.item Large
-            a.item Plus Sizes
-        .column
-          h2.ui.header.title Stains
-          .ui.link.list
-            each stain in stains
-              a.item(href='/stains/#{stain.slug}')
-                img.ui.mini.avatar.image.menu(src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
-                span.line-text
-                  |#{stain.entry.fields.name["en-US"]}
-        .column
-          h2.ui.header.title Materials
-          .ui.link.list
-            each material in materials
-              a.item(href='/materials/#{material.slug}')
-                img.ui.mini.avatar.image.menu(src='#{material.entry.fields.picture["en-US"].fields.file["en-US"].url}')
-                span.line-text
-                  |#{material.entry.fields.name["en-US"]}
+
+    include popup-menu

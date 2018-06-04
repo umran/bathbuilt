@@ -279,6 +279,10 @@ $('#orderForm').submit(function(e) {
   e.preventDefault()
 })
 
+$('#order-cancel').click(function(){
+  $('#modal-order').modal('hide')
+})
+
 $('#customizeForm').submit(function(e) {
 
   if(!$('#name-customize').val() || !$('#email-customize').val() || !$('#phone-customize').val() || !$('#details-customize').val() || !$('#quantity-customize').val()) {
@@ -312,6 +316,10 @@ $('#customizeForm').submit(function(e) {
   submitOrderForm(formData)
 
   e.preventDefault()
+})
+
+$('#customize-cancel').click(function(){
+  $('#modal-customize').modal('hide')
 })
 
 function submitOrderForm(formData) {

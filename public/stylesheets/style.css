@@ -288,6 +288,11 @@ span.line-text {
   font-weight: 400;
 }
 
+.philosophy .social {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
 /* Subscribe and Follow */
 
 .ui.subfol.segment {
@@ -502,6 +507,11 @@ article > p:first-child {
 /* Footer Rules */
 .social > .text {
   padding-left: 5px;
+}
+
+.copyright-notice {
+  padding-top: 4em;
+  color: rgba(255,255,255,.5);
 }
 
 /* Error Page */

@@ -1,33 +1,48 @@
 div(class="ui vertical subfol segment")
   div(class="ui container")
-    .ui.two.column.grid
-      .ui.three.column.stackable.grid
-        .column
-          h4.ui.inverted.header
-            |Products
-          .ui.inverted.link.list
-            each room in rooms
-              a.item(href='/rooms/#{room.slug}')
-                |#{room.entry.fields.name["en-US"]}
-        .column
-          h4.ui.inverted.header
-            |General
-          .ui.inverted.link.list
-            a.item(href="/about")
-              |About Us
-            //-a.item
-              |Inquiries
-            a.item(href="/testimonials")
-              |Testimonials
-        .column
-          h4.ui.inverted.header
-            |Social
-          .ui.inverted.link.list
-            a.item.social(href="https://www.facebook.com/bathbuilt/")
-              i.fab.fa-facebook-square
-              span.text
-                |Facebook
-            a.item.social(href="https://www.instagram.com/bathbuilt/")
-              i.fab.fa-instagram
-              span.text
-                |Instagram
+    .ui.four.column.stackable.grid
+      .column
+        h4.ui.inverted.header
+          |Products
+        .ui.inverted.link.list
+          each room in rooms
+            a.item(href='/rooms/#{room.slug}')
+              |#{room.entry.fields.name["en-US"]}
+      .column
+        h4.ui.inverted.header
+          |General
+        .ui.inverted.link.list
+          a.item(href="/")
+            |Home
+          a.item(href="/about")
+            |About Us
+          a.item(href='/contact')
+            |Contact
+          a.item(href="/testimonials")
+            |Testimonials
+      .column
+        h4.ui.inverted.header
+          |Social
+        .ui.inverted.link.list
+          a.item.social(href="https://www.facebook.com/bathbuilt/")
+            i.fab.fa-facebook-square
+            span.text
+              |Facebook
+          a.item.social(href="https://www.instagram.com/bathbuilt/")
+            i.fab.fa-instagram
+            span.text
+              |Instagram
+      .column
+        h4.ui.inverted.header
+          |Hours
+        .ui.inverted.link.list
+          .item
+            span.text
+              |Monday - Friday
+          .item
+            span.text
+              |8:00 - 4:30 pm PST
+
+    .copyright-notice
+      |© 2018 Bath Built – Custom Handmade Solid Wood Furniture
+      //-|© 2018 Bath Built – Custom Handmade Solid Wood Furniture · <a href="/">Privacy Policy</a> · <a href="/">Sitemap</a>
