@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var error_handler = require('./modules/error_handler')
+var error_handler = require('./modules/error_handler');
 
 var app = express();
 
@@ -58,7 +58,7 @@ app.use(function(req, res, next) {
   });
 });*/
 
-app.use(error_handler)
+app.use(error_handler);
 
 
 module.exports = app;

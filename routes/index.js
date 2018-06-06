@@ -47,7 +47,7 @@ router.get('/rooms/:id', function(req, res, next) {
 })
 
 // stain palette
-router.get('/stains', function(req, res, next) {
+router.get('/wood-stains', function(req, res, next) {
 
   data.getStainsPalette(function(err, result) {
     if(err) {
@@ -219,6 +219,11 @@ router.route('/get-price').post(function(req, res) {
 
     res.send(result)
   })
+})
+
+// redirects
+router.get('/stains', function(req, res, next) {
+  res.redirect(301, '/wood-stains')
 })
 
 module.exports = router
