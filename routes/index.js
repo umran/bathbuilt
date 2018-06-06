@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
       //res.render('error')
       return
     }
-    res.render('index', { title: 'Bath Built Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2], feature: result[3][0] })
+    res.render('index', { title: 'Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], feature: result[3][0] })
   })
 })
 
@@ -42,7 +42,7 @@ router.get('/rooms/:id', function(req, res, next) {
       return
     }
 
-    res.render('room', { title: result[3][0].entry.fields.name["en-US"] + ' | Bathbuilt Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
+    res.render('room', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
   })
 })
 
@@ -58,11 +58,11 @@ router.get('/wood-stains', function(req, res, next) {
       return
     }
 
-    res.render('stain-palette', { title: 'Stains | Bathbuilt Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2]})
+    res.render('stain-palette', { title: 'Solid Wood Furniture Stains | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2]})
   })
 })
 
-router.get('/stains/:id', function(req, res, next) {
+router.get('/wood-stains/:id', function(req, res, next) {
   var id = req.params.id
   id = id.toLowerCase()
 
@@ -83,11 +83,11 @@ router.get('/stains/:id', function(req, res, next) {
       return
     }
 
-    res.render('stain', { title: result[3][0].entry.fields.name["en-US"] + ' | Bathbuilt Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
+    res.render('stain', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
   })
 })
 
-router.get('/materials/:id', function(req, res, next) {
+router.get('/wood-materials/:id', function(req, res, next) {
   var id = req.params.id
   id = id.toLowerCase()
 
@@ -108,7 +108,7 @@ router.get('/materials/:id', function(req, res, next) {
       return
     }
 
-    res.render('material', { title: result[3][0].entry.fields.name["en-US"] + ' | Bathbuilt Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
+    res.render('material', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
   })
 })
 
@@ -141,7 +141,7 @@ router.get('/products/:id', function(req, res, next) {
       raw.entry.fields.specifications['en-US'] = converter.makeHtml(raw.entry.fields.specifications['en-US'])
     }
 
-    res.render('product', { title: result[3][0].entry.fields.name["en-US"] + ' | Bathbuilt Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2], result: raw })
+    res.render('product', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: raw })
   })
 })
 
@@ -155,7 +155,7 @@ router.get('/testimonials', function(req, res, next) {
       //res.render('error')
       return
     }
-    res.render('testimonials', { title: 'Testimonials | Bath Built Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2], testimonials: result[3] })
+    res.render('testimonials', { title: 'Testimonials | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], testimonials: result[3] })
   })
 })
 
@@ -169,7 +169,7 @@ router.get('/about', function(req, res, next) {
       //res.render('error')
       return
     }
-    res.render('about', { title: 'About Us | Bath Built Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2] })
+    res.render('about', { title: 'About Us | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2] })
   })
 })
 
@@ -182,7 +182,7 @@ router.get('/contact', function(req, res, next) {
       //res.render('error')
       return
     }
-    res.render('contact', { title: 'Contact | Bathbuilt Custom Wood Furniture Vancouver BC', rooms: result[0], stains: result[1], materials: result[2] })
+    res.render('contact', { title: 'Contact | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2] })
   })
 })
 
@@ -224,6 +224,20 @@ router.route('/get-price').post(function(req, res) {
 // redirects
 router.get('/stains', function(req, res, next) {
   res.redirect(301, '/wood-stains')
+})
+
+router.get('/stains/:id', function(req, res, next) {
+  var id = req.params.id
+  res.redirect(301, '/wood-stains/'+id)
+})
+
+router.get('/materials', function(req, res, next) {
+  res.redirect(301, '/wood-materials')
+})
+
+router.get('/materials/:id', function(req, res, next) {
+  var id = req.params.id
+  res.redirect(301, '/wood-materials/'+id)
 })
 
 module.exports = router

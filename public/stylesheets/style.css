@@ -437,7 +437,7 @@ article > * {
 }
 
 article > figure {
-  margin: 38px 0 0 0;
+  margin-bottom: 38px;
 }
 
 article > figure > img {
@@ -457,9 +457,14 @@ article > blockquote {
     padding-left: 10px;
     color: #333;
     border-left: 3px solid black;
-    margin: 38px 0 0 0;
+    margin-bottom: 38px;
     font-size: 19px;
     line-height: 33px;
+}
+
+.testimonials article > blockquote {
+    margin-bottom: 0px;
+    margin-top: 38px;
 }
 
 article > h1 {
@@ -468,12 +473,12 @@ article > h1 {
 }
 
 article > p {
-  margin: 38px 0 0 0;
+  margin-bottom: 38px;
   font-size: 19px;
   line-height: 33px;
 }
 
-article > p:first-child {
+article > p:last-child {
   margin-top: 0;
 }
 
