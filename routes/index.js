@@ -7,6 +7,8 @@ var create_inquiry = require('../modules/create_inquiry')
 var get_price = require('../modules/get_price')
 var showdown  = require('showdown')
 
+var converter = new showdown.Converter()
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   data.getHome(function(err, result){
@@ -42,7 +44,13 @@ router.get('/rooms/:id', function(req, res, next) {
       return
     }
 
-    res.render('room', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
+    var raw = result[3][0]
+
+    if(raw.entry.fields.description) {
+      raw.entry.fields.description['en-US'] = converter.makeHtml(raw.entry.fields.description['en-US'])
+    }
+
+    res.render('room', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: raw, products: result[4]})
   })
 })
 
@@ -83,7 +91,29 @@ router.get('/wood-stains/:id', function(req, res, next) {
       return
     }
 
-    res.render('stain', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
+    var raw = result[3][0]
+
+    if(raw.entry.fields.description) {
+      raw.entry.fields.description['en-US'] = converter.makeHtml(raw.entry.fields.description['en-US'])
+    }
+
+    res.render('stain', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: raw, products: result[4]})
+  })
+})
+
+// stain palette
+router.get('/wood-materials', function(req, res, next) {
+
+  data.getMaterialsPalette(function(err, result) {
+    if(err) {
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
+      return
+    }
+
+    res.render('material-palette', { title: 'Solid Wood Furniture Materials | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2]})
   })
 })
 
@@ -108,12 +138,17 @@ router.get('/wood-materials/:id', function(req, res, next) {
       return
     }
 
-    res.render('material', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: result[3][0], products: result[4]})
+    var raw = result[3][0]
+
+    if(raw.entry.fields.description) {
+      raw.entry.fields.description['en-US'] = converter.makeHtml(raw.entry.fields.description['en-US'])
+    }
+
+    res.render('material', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: raw, products: result[4]})
   })
 })
 
 router.get('/products/:id', function(req, res, next) {
-  var converter = new showdown.Converter()
 
   var id = req.params.id
   id = id.toLowerCase()
@@ -137,7 +172,7 @@ router.get('/products/:id', function(req, res, next) {
 
     var raw = result[3][0]
 
-    if(raw.entry.fields.specifications['en-US']) {
+    if(raw.entry.fields.specifications) {
       raw.entry.fields.specifications['en-US'] = converter.makeHtml(raw.entry.fields.specifications['en-US'])
     }
 
@@ -158,6 +193,19 @@ router.get('/testimonials', function(req, res, next) {
     res.render('testimonials', { title: 'Testimonials | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], testimonials: result[3] })
   })
 })
+
+/*router.get('/sitemap', function(req, res, next) {
+  data.getSitemapPage(function(err, result){
+    if(err) {
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
+      return
+    }
+    res.render('sitemap', { title: 'Sitemap | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], testimonials: result[3] })
+  })
+})*/
 
 // static pages
 router.get('/about', function(req, res, next) {
@@ -183,6 +231,19 @@ router.get('/contact', function(req, res, next) {
       return
     }
     res.render('contact', { title: 'Contact | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2] })
+  })
+})
+
+router.get('/privacy-policy', function(req, res, next) {
+  data.getStaticPage(function(err, result){
+    if(err) {
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
+      return
+    }
+    res.render('privacy-policy', { title: 'Privacy Policy | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2] })
   })
 })
 

@@ -1,7 +1,10 @@
 doctype html
 html(lang='en')
   head
-    title= title
+    if result.entry.fields.headTags
+      |!{result.entry.fields.headTags['en-US']}
+    else
+      title= title
     meta(name="viewport" content="initial-scale=1.0, width=device-width")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:200,300,400")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i")

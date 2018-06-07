@@ -22,6 +22,10 @@ block content
                 .better.header.centered-text
                   |#{product.entry.fields.name["en-US"]}
 
+    .ui.text.container
+      if result.entry.fields.description
+        article
+          |!{result.entry.fields.description["en-US"]}
 
     include footer.jade
 block scripts

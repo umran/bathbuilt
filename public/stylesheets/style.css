@@ -472,6 +472,16 @@ article > h1 {
   line-height: 44px;
 }
 
+article > h2 {
+  font-size: 34px;
+  line-height: 44px;
+}
+
+article > h3 {
+  font-size: 30px;
+  line-height: 44px;
+}
+
 article > p {
   margin-bottom: 38px;
   font-size: 19px;
@@ -507,6 +517,12 @@ article > p:last-child {
 .contact-form {
   padding-top: 0.5em;
   padding-bottom: 2em;
+}
+
+/* Privacy Policy Page */
+.privacy-policy-content {
+  padding-top: 6em;
+  padding-bottom: 4em;
 }
 
 /* Footer Rules */

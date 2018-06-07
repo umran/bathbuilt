@@ -19,8 +19,9 @@ block content
             | #{result.entry.fields.name['en-US']}
           h3.price(id='price')
             | To display price, select options below
-          article.product-description(itemprop="description")
-            | !{result.entry.fields.specifications["en-US"]}
+          if result.entry.fields.specifications
+            article.product-description(itemprop="description")
+              | !{result.entry.fields.specifications["en-US"]}
           form.ui.form.choice(id="options-form")
             input(type="hidden" name='product-id' id="product-id" value="#{result.entry.sys.id}")
             input(type="hidden" name="product-name" id="product-name" value="#{result.entry.fields.name['en-US']}")

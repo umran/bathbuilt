@@ -1,10 +1,7 @@
 doctype html
 html(lang='en')
   head
-    if result.entry.fields.headTags
-      |!{result.entry.fields.headTags['en-US']}
-    else
-      title= title
+    title= title
     meta(name="viewport" content="initial-scale=1.0, width=device-width")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:200,300,400")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i")
@@ -14,7 +11,7 @@ html(lang='en')
     script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
     script(src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js")
     script(src="/semantic.min.js")
-    include ./static/head/rooms.html
+    include ./static/head/material-palette.html
   body(class="pushable")
     block content
     block scripts
