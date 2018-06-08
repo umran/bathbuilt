@@ -194,7 +194,7 @@ router.get('/testimonials', function(req, res, next) {
   })
 })
 
-router.get('/sitemap', function(req, res, next) {
+router.get('/sitemap.xml', function(req, res, next) {
   data.getSitemapPage(function(err, result){
     if(err) {
       var httpError = new Error('Not Found');
@@ -301,6 +301,10 @@ router.get('/materials', function(req, res, next) {
 router.get('/materials/:id', function(req, res, next) {
   var id = req.params.id
   res.redirect(301, '/wood-materials/'+id)
+})
+
+router.get('/sitemap', function(req, res, next) {
+  res.redirect(301, '/sitemap.xml')
 })
 
 module.exports = router
