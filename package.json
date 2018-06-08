@@ -15,6 +15,7 @@
     "dompurify": "^1.0.4",
     "express": "~4.13.4",
     "googleapis": "^27.0.0",
+    "helmet": "^3.12.1",
     "jade": "~1.11.0",
     "jsdom": "^11.11.0",
     "mongoose": "^5.0.8",

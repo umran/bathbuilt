@@ -8,7 +8,10 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var error_handler = require('./modules/error_handler');
 
+var helmet = require('helmet');
+
 var app = express();
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

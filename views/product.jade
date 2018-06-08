@@ -34,7 +34,7 @@ block content
                   .menu
                     each stain in result.entry.fields.stains["en-US"]
                       .item(data-value='#{stain.fields.name["en-US"]}')
-                        img.ui.mini.avatar.image.circ(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}')
+                        img.ui.mini.avatar.image.circ(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}' alt='#{stain.fields.name["en-US"]}')
                         |#{stain.fields.name["en-US"]}
             if result.entry.fields.materials
               .field(id='materialsOption').prompt
@@ -45,7 +45,7 @@ block content
                   .menu
                     each material in result.entry.fields.materials["en-US"]
                       .item(data-value='#{material.fields.name["en-US"]}' data-idd='#{material.sys.id}')
-                        img.ui.mini.avatar.image.circ(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}')
+                        img.ui.mini.avatar.image.circ(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}' alt='#{material.fields.name["en-US"]}')
                         |#{material.fields.name["en-US"]}
             if result.entry.fields.size
               .field(id='sizeOption').prompt
