@@ -1,0 +1,60 @@
+doctype xml
+urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+
+  //- Home
+  url
+    loc
+      |https://bathbuiltfurniture.com/
+
+  //- About
+  url
+    loc
+      |https://bathbuiltfurniture.com/about
+
+  //- Contact
+  url
+    loc
+      |https://bathbuiltfurniture.com/contact
+
+  //- Testimonials
+  url
+    loc
+      |https://bathbuiltfurniture.com/testimonials
+
+  //- Privacy-Policy
+  url
+    loc
+      |https://bathbuiltfurniture.com/privacy-policy
+
+  //- Stain Palette
+  url
+    loc
+      |https://bathbuiltfurniture.com/wood-stains
+
+  //- Material Palette
+  url
+    loc
+      |https://bathbuiltfurniture.com/wood-materials
+
+  each room in rooms
+    url
+      loc
+        |https://bathbuiltfurniture.com/rooms/#{room.slug}
+
+  each stain in stains
+    url
+      loc
+        |https://bathbuiltfurniture.com/wood-stains/#{stain.slug}
+
+  each material in materials
+    url
+      loc
+        |https://bathbuiltfurniture.com/wood-materials/#{material.slug}
+
+  //-each set in sets
+    url
+
+  each product in products
+    url
+      loc
+        |https://bathbuiltfurniture.com/products/#{product.slug}

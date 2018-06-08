@@ -549,14 +549,9 @@ article > p:last-child {
 /* Responsive Rules */
 
 /* non desktop rules */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
   .desktop {
     display: none!important;
-  }
-
-  .ui.menu.mobile>.ui.container {
-    margin-left: 1rem!important;
-    margin-right: 1rem!important;
   }
 
   .ui.card>.image.product, .ui.cards>.card>.image.product {
@@ -570,8 +565,16 @@ article > p:last-child {
   }
 }
 
+/* Corollary non desktop rule */
+@media only screen and (max-width: 768px) {
+  .ui.menu.mobile>.ui.container {
+    margin-left: 1rem!important;
+    margin-right: 1rem!important;
+  }
+}
+
 /* desktop rules */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 993px) {
   .mobile {
     display: none!important;
   }

@@ -731,6 +731,25 @@ exports.getStaticPage = function(callback) {
   })
 }
 
+exports.getSitemapPage = function(callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getAllProducts(cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
 exports.getPrice = function(data, callback) {
   var query = {}
   if(data.material_id && data.size_id) {

@@ -8,6 +8,10 @@ div(class="ui vertical subfol segment")
           each room in rooms
             a.item(href='/rooms/#{room.slug}')
               |#{room.entry.fields.name["en-US"]}
+          a.item(href='/wood-stains')
+            |Stains
+          a.item(href='/wood-materials')
+            |Materials
       .column
         h4.ui.inverted.header
           |General
@@ -44,5 +48,4 @@ div(class="ui vertical subfol segment")
               |8:00 - 4:30 pm PST
 
     .copyright-notice
-      |© 2018 Bath Built – Custom Handmade Solid Wood Furniture · <a href="/privacy-policy">Privacy Policy</a>
-      //-|© 2018 Bath Built – Custom Handmade Solid Wood Furniture · <a href="/privacy-policy">Privacy Policy</a> · <a href="/">Sitemap</a>
+      |© 2018 Bath Built – Custom Handmade Solid Wood Furniture · <a href="/privacy-policy">Privacy Policy</a> · <a href="/sitemap">Sitemap</a>

@@ -194,7 +194,7 @@ router.get('/testimonials', function(req, res, next) {
   })
 })
 
-/*router.get('/sitemap', function(req, res, next) {
+router.get('/sitemap', function(req, res, next) {
   data.getSitemapPage(function(err, result){
     if(err) {
       var httpError = new Error('Not Found');
@@ -203,9 +203,11 @@ router.get('/testimonials', function(req, res, next) {
       //res.render('error')
       return
     }
-    res.render('sitemap', { title: 'Sitemap | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], testimonials: result[3] })
+
+    res.header('Content-Type', 'application/xml')
+    res.render('sitemap', { title: 'Sitemap | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], products: result[3] })
   })
-})*/
+})
 
 // static pages
 router.get('/about', function(req, res, next) {
