@@ -601,6 +601,11 @@ article > p:last-child {
     padding: 0;
     font-size: 1em;
   }
+
+  article {
+    display: block;
+    padding: 6em 1em;
+  }
 }
 
 /* Utility Classes */
