@@ -5,7 +5,7 @@
     .menu
       each room in rooms
         a.item(href='/rooms/#{room.slug}')
-          //-img.ui.mini.avatar.image.menu(src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
+          //-img.ui.mini.avatar.image.menu(data-src='#{room.entry.fields.banner["en-US"].fields.file["en-US"].url}')
           span.line-text
             |#{room.entry.fields.name["en-US"]}
       a.item(href='/wood-stains')
@@ -33,7 +33,7 @@
     .menu
       each stain in stains
         a.item(href='/stains/#{stain.slug}')
-          //-img.ui.mini.avatar.image.menu(src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+          //-img.ui.mini.avatar.image.menu(data-src='#{stain.entry.fields.picture["en-US"].fields.file["en-US"].url}')
           span.line-text
             |#{stain.entry.fields.name["en-US"]}
   //-.item
@@ -42,6 +42,6 @@
     .menu
       each material in materials
         a.item(href='/materials/#{material.slug}')
-          //-img.ui.mini.avatar.image.menu(src='#{material.entry.fields.picture["en-US"].fields.file["en-US"].url}')
+          //-img.ui.mini.avatar.image.menu(data-src='#{material.entry.fields.picture["en-US"].fields.file["en-US"].url}')
           span.line-text
             |#{material.entry.fields.name["en-US"]}

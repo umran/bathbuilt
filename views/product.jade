@@ -8,12 +8,12 @@ block content
     div(class="ui vertical product segment" itemscope itemtype="http://schema.org/Product")
       div(class="ui stackable grid container")
         .ten.wide.column.product-item
-          img.ui.fluid.image.main-image(itemprop="image" src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}' alt="#{result.entry.fields.name['en-US']}")
+          img.ui.fluid.image.main-image(itemprop="image" data-src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}' alt="#{result.entry.fields.name['en-US']}")
           .thumbnails
             .ui.tiny.images
               each image in result.entry.fields.pictures["en-US"]
                 a(href='#')
-                  img.thumb.alternative-image(src='#{image.fields.file["en-US"].url}' alt="#{result.entry.fields.name['en-US']}")
+                  img.thumb.alternative-image(data-src='#{image.fields.file["en-US"].url}' alt="#{result.entry.fields.name['en-US']}")
         .six.wide.column
           h1(itemprop="name")
             | #{result.entry.fields.name['en-US']}
@@ -34,7 +34,7 @@ block content
                   .menu
                     each stain in result.entry.fields.stains["en-US"]
                       .item(data-value='#{stain.fields.name["en-US"]}')
-                        img.ui.mini.avatar.image.circ(src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}' alt='#{stain.fields.name["en-US"]}')
+                        img.ui.mini.avatar.image.circ(data-src='#{stain.fields.picture["en-US"].fields.file["en-US"].url}' alt='#{stain.fields.name["en-US"]}')
                         |#{stain.fields.name["en-US"]}
             if result.entry.fields.materials
               .field(id='materialsOption').prompt
@@ -45,7 +45,7 @@ block content
                   .menu
                     each material in result.entry.fields.materials["en-US"]
                       .item(data-value='#{material.fields.name["en-US"]}' data-idd='#{material.sys.id}')
-                        img.ui.mini.avatar.image.circ(src='#{material.fields.picture["en-US"].fields.file["en-US"].url}' alt='#{material.fields.name["en-US"]}')
+                        img.ui.mini.avatar.image.circ(data-src='#{material.fields.picture["en-US"].fields.file["en-US"].url}' alt='#{material.fields.name["en-US"]}')
                         |#{material.fields.name["en-US"]}
             if result.entry.fields.size
               .field(id='sizeOption').prompt

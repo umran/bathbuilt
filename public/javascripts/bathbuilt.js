@@ -427,3 +427,19 @@ function submitContactForm(formData) {
   })
 }
 /* End of Contact Form Logic */
+
+/* Lazy Loading Images */
+$('div[data-style]').each(function(i, product) {
+  product.setAttribute('style', product.getAttribute('data-style'))
+  product.onload = function() {
+    product.removeAttribute('data-style')
+  }
+})
+
+$('img[data-src]').each(function(i, image) {
+  image.setAttribute('src', image.getAttribute('data-src'))
+  image.onload = function() {
+    image.removeAttribute('data-src')
+  }
+})
+/* End of Lazy Loading Images */

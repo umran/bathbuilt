@@ -5,7 +5,7 @@ block content
   div.pusher
     include menu-alt.jade
 
-    .ui.masthead.segment.rooms.musk(style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + result.entry.fields.banner["en-US"].fields.file["en-US"].url + "');"))
+    .ui.masthead.segment.rooms.musk(data-style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + result.entry.fields.banner["en-US"].fields.file["en-US"].url + "');"))
       .ui.stackable.three.column.centered.grid.container
         .column
           .featured-details.rooms
@@ -17,7 +17,7 @@ block content
         .ui.four.doubling.cards
           each product in products
             a.card.screv(href="/products/#{product.slug}")
-              .image.product(style=("background-image: url('" + product.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
+              .image.product(data-style=("background-image: url('" + product.entry.fields.pictures["en-US"][0].fields.file["en-US"].url + "');"))
               .content
                 .better.header.centered-text
                   |#{product.entry.fields.name["en-US"]}

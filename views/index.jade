@@ -37,7 +37,7 @@ block content
         each room in rooms
           .column.screv
             a(href='/rooms/#{room.slug}')
-              .musk.ui.showcase-item.segment(style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + room.entry.fields.banner["en-US"].fields.file["en-US"].url + "');"))
+              .musk.ui.showcase-item.segment(data-style=("background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),  url('" + room.entry.fields.banner["en-US"].fields.file["en-US"].url + "');"))
                 h3.ui.header.musk-header
                   |#{room.entry.fields.name["en-US"]}
 

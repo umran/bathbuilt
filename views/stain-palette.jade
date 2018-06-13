@@ -14,7 +14,7 @@ block content
           .ui.four.doubling.cards
             each stain in stains
               a.card.screv(href="/wood-stains/#{stain.slug}")
-                .image.product(style=("background-image: url('" + stain.entry.fields.picture["en-US"].fields.file["en-US"].url + "');"))
+                .image.product(data-style=("background-image: url('" + stain.entry.fields.picture["en-US"].fields.file["en-US"].url + "');"))
                 .content
                   .better.header.centered-text
                     |#{stain.entry.fields.name["en-US"]}
