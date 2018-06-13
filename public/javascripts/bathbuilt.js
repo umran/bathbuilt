@@ -188,8 +188,8 @@ $(document).ready(function() {
     $('.main-image').attr('src', altsrc)
   })
 
-  window.sr = ScrollReveal();
-  sr.reveal('.screv');
+  /*window.sr = ScrollReveal();
+  sr.reveal('.screv');*/
 
 })
 
