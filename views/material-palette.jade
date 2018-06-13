@@ -14,7 +14,7 @@ block content
           .ui.four.doubling.cards
             each material in materials
               a.card.screv(href="/wood-materials/#{material.slug}")
-                .image.product(data-style=("background-image: url('" + material.entry.fields.picture["en-US"].fields.file["en-US"].url + "');"))
+                .image.product(data-style=("background-image: url('" + material.entry.fields.picture["en-US"].fields.file["en-US"].url + "?q=20');"))
                 .content
                   .better.header.centered-text
                     |#{material.entry.fields.name["en-US"]}
