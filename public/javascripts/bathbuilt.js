@@ -1,4 +1,5 @@
-$( window ).on( "load", function() {
+$(document).ready(function() {
+
   /* Lazy Loading Images */
   $('div[data-style]').each(function(i, product) {
     product.setAttribute('style', product.getAttribute('data-style'))
@@ -14,9 +15,7 @@ $( window ).on( "load", function() {
     }
   })
   /* End of Lazy Loading Images */
-})
 
-$(document).ready(function() {
   $('#sizeOption').change(function() {
     setTimeout(function() {
       getPrice()
@@ -184,7 +183,7 @@ $(document).ready(function() {
   //$('.ui.sidebar').sidebar('attach events', '.toc.item')
 
   $('.alternative-image').click(function() {
-    var altsrc = $(this).attr('src')
+    var altsrc = $(this).attr('data-original')
     $('.main-image').attr('src', altsrc)
   })
 

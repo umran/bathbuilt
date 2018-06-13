@@ -13,7 +13,7 @@ block content
             .ui.tiny.images
               each image in result.entry.fields.pictures["en-US"]
                 a(href='#')
-                  img.thumb.alternative-image(data-src='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+                  img.thumb.alternative-image(data-src='#{image.fields.file["en-US"].url}?q=20' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
         .six.wide.column
           h1(itemprop="name")
             | #{result.entry.fields.name['en-US']}
