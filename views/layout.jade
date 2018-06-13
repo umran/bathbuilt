@@ -4,14 +4,15 @@ html(lang='en')
     title= title
     meta(charset="utf-8")
     meta(name="viewport" content="initial-scale=1.0, width=device-width")
-    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:200,300,400")
-    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i")
-    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
-    link(rel="stylesheet" href="/semantic.min.css")
-    link(rel="stylesheet" href="/stylesheets/style.css")
-    script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
-    script(src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js")
-    script(src="/semantic.min.js")
+    include ./includes/stylesheets.jade
+    //-link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:200,300,400")
+    //-link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i")
+    //-link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
+    //-link(rel="stylesheet" href="/semantic.min.css")
+    //-link(rel="stylesheet" href="/stylesheets/style.css")
+    //-script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+    //-script(src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js")
+    //-script(src="/semantic.min.js")
     include ./static/head/main.html
   body(class="pushable")
     block content
