@@ -7,22 +7,31 @@ block content
 
     div(class="ui vertical product segment" itemscope itemtype="http://schema.org/Product")
       div(class="ui stackable grid container")
-        .ten.wide.column.product-item
+
+        .five.wide.column.product-item.image-column
+          each image in result.entry.fields.pictures["en-US"]["setA"]
+            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=20' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+        .five.wide.column.product-item.image-column
+          each image in result.entry.fields.pictures["en-US"]["setB"]
+            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=20' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+
+        //-.ten.wide.column.product-item
           img.ui.fluid.image.main-image(itemprop="image" data-src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
           .thumbnails
             .ui.tiny.images
               each image in result.entry.fields.pictures["en-US"]
                 a(href='#')
                   img.thumb.alternative-image(data-src='#{image.fields.file["en-US"].url}?q=20' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+
         .six.wide.column
-          h1(itemprop="name")
+          h1(itemprop="name").centered-text
             | #{result.entry.fields.name['en-US']}
-          h3.price(id='price')
+          h3.price(id='price').centered-text
             | To display price, select options below
           if result.entry.fields.specifications
-            article.product-description(itemprop="description")
+            .product-description(itemprop="description")
               | !{result.entry.fields.specifications["en-US"]}
-          form.ui.form.choice(id="options-form")
+          form.ui.form.choice(id="options-form").centered-text
             input(type="hidden" name='product-id' id="product-id" value="#{result.entry.sys.id}")
             input(type="hidden" name="product-name" id="product-name" value="#{result.entry.fields.name['en-US']}")
             if result.entry.fields.stains
@@ -59,7 +68,7 @@ block content
                         |#{size.fields.name["en-US"]}
             .ui.hidden.negative.message(id='choice-error')
               p(id='choice-error-message')
-            button.submit.ui.teal.basic.button(id="toggle-modal-order")
+            button.first.submit.ui.teal.basic.button(id="toggle-modal-order")
               |Order Now
             button.submit.ui.grey.basic.button(id="toggle-modal-customize")
               |Request a Custom Order

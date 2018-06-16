@@ -170,25 +170,11 @@ $(document).ready(function() {
   // center cover text
   centerCover()
   centerMusk()
-  // adjust cat
-  //adjustCatHeight()
 
   $(window).resize(function() {
     centerCover()
     centerMusk()
-    //adjustCatHeight()
   })
-
-  // create sidebar and attach to menu open
-  //$('.ui.sidebar').sidebar('attach events', '.toc.item')
-
-  $('.alternative-image').click(function() {
-    var altsrc = $(this).attr('data-original')
-    $('.main-image').attr('src', altsrc)
-  })
-
-  /*window.sr = ScrollReveal();
-  sr.reveal('.screv');*/
 
 })
 

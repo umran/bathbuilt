@@ -176,6 +176,22 @@ router.get('/products/:id', function(req, res, next) {
       raw.entry.fields.specifications['en-US'] = converter.makeHtml(raw.entry.fields.specifications['en-US'])
     }
 
+    // generate two sets of images
+    var setA = []
+    var setB = []
+
+    for (var i = 0; i < raw.entry.fields.pictures["en-US"].length; i++) {
+      if(i%2 == 0) {
+        console.log('A')
+        setA.push(raw.entry.fields.pictures["en-US"][i])
+      } else {
+        console.log('B')
+        setB.push(raw.entry.fields.pictures["en-US"][i])
+      }
+    }
+
+    raw.entry.fields.pictures["en-US"] = {setA: setA, setB: setB}
+
     res.render('product', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: raw })
   })
 })

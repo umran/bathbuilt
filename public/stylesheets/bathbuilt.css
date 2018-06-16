@@ -332,8 +332,12 @@ span.line-text {
 
 /* Product Page */
 .ui.product.segment {
-  padding: 4em 2em;
+  padding: 4em 0em;
   padding-top: 8em;
+}
+
+.dual-image~.dual-image {
+  margin-top: 2em;
 }
 
 .thumbnails {
@@ -346,6 +350,10 @@ span.line-text {
 
 .product-description {
   font-size: 1.33rem;
+}
+
+.product-description > p {
+  text-align: center;
 }
 
 .price {
@@ -362,6 +370,11 @@ article.product-description {
   padding-bottom: 1em;
 }
 
+.ui.button.first {
+  margin-bottom: 1em;
+  margin-right: 0.75em;
+}
+
 /* Room Page */
 .ui.masthead.segment.rooms {
   background-size: cover;
@@ -373,7 +386,7 @@ article.product-description {
 }
 
 .ui.vertical.showcase.segment.rooms {
-  padding: 4em 2em;
+  padding: 4em 0em;
 }
 
 .featured-details.rooms {
@@ -570,6 +583,12 @@ article > p:last-child {
   .ui.menu.mobile>.ui.container {
     margin-left: 1rem!important;
     margin-right: 1rem!important;
+  }
+
+  .dual-image {
+    max-width: 300px!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
   }
 }
 
