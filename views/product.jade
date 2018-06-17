@@ -10,10 +10,10 @@ block content
 
         .five.wide.column.product-item.image-column
           each image in result.entry.fields.pictures["en-US"]["setA"]
-            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=20' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=50' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
         .five.wide.column.product-item.image-column
           each image in result.entry.fields.pictures["en-US"]["setB"]
-            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=20' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=50' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
 
         //-.ten.wide.column.product-item
           img.ui.fluid.image.main-image(itemprop="image" data-src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
@@ -21,7 +21,7 @@ block content
             .ui.tiny.images
               each image in result.entry.fields.pictures["en-US"]
                 a(href='#')
-                  img.thumb.alternative-image(data-src='#{image.fields.file["en-US"].url}?q=20' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+                  img.thumb.alternative-image(data-src='#{image.fields.file["en-US"].url}?q=50' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
 
         .six.wide.column
           h1(itemprop="name").centered-text
