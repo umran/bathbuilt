@@ -143,6 +143,11 @@ h1, h2, h3, h4, h5, h6, .ui.header.title, .better.header {
   margin-bottom: 0;
 }
 
+/* Home Page */
+.header-link > a {
+  color: rgba(0,0,0,.87);
+}
+
 /** Dropdown Menu **/
 .ui.link.list .item, .ui.link.list .item a:not(.ui), .ui.link.list a.item {
   color: rgba(0,0,0,0.75);
