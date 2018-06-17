@@ -182,10 +182,8 @@ router.get('/products/:id', function(req, res, next) {
 
     for (var i = 0; i < raw.entry.fields.pictures["en-US"].length; i++) {
       if(i%2 == 0) {
-        console.log('A')
         setA.push(raw.entry.fields.pictures["en-US"][i])
       } else {
-        console.log('B')
         setB.push(raw.entry.fields.pictures["en-US"][i])
       }
     }
