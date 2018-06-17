@@ -1,0 +1,100 @@
+extends site-directory-layout
+
+block content
+  include sidebar.jade
+  div.pusher
+    include menu-alt.jade
+
+    .directory-main
+      .ui.text.container
+        h1.centered-text Site Directory - Bath Built Custom Furniture
+
+        table.ui.very.basic.table.directory-table
+          thead
+            tr
+              th
+                |Home
+              th
+                a(href='/')
+                  |https://bathbuiltfurniture.com/
+          tbody
+            tr
+              td
+                |About
+              td
+                a(href='/about')
+                  |https://bathbuiltfurniture.com/about
+            tr
+              td
+                |Contact
+              td
+                a(href='/contact')
+                  |https://bathbuiltfurniture.com/contact
+            tr
+              td
+                |Testimonials
+              td
+                a(href='/testimonials')
+                  |https://bathbuiltfurniture.com/testimonials
+            tr
+              td
+                |Privacy Policy
+              td
+                a(href='/privacy-policy')
+                  |https://bathbuiltfurniture.com/privacy-policy
+
+        each room in rooms
+          table.ui.very.basic.table.directory-table
+            thead
+              tr
+                th
+                  |#{room.entry.fields.name['en-US']}
+                th
+                  a(href='/rooms/#{room.slug}')
+                    |https://bathbuiltfurniture.com/rooms/#{room.slug}
+            tbody
+              each product in room.products
+                tr
+                  td
+                    |#{product.entry.fields.name['en-US']}
+                  td
+                    a(href='/products/#{product.slug}')
+                      |https://bathbuiltfurniture.com/products/#{product.slug}
+
+        table.ui.very.basic.table.directory-table
+          thead
+            tr
+              th
+                |Stains
+              th
+                a(href='/wood-stains')
+                  |https://bathbuiltfurniture.com/wood-stains
+          tbody
+            each stain in stains
+              tr
+                td
+                  |#{stain.entry.fields.name['en-US']}
+                td
+                  a(href='/wood-stains/#{stain.slug}')
+                    |https://bathbuiltfurniture.com/wood-stains/#{stain.slug}
+
+        table.ui.very.basic.table.directory-table
+          thead
+            tr
+              th
+                |Materials
+              th
+                a(href='/wood-materials')
+                  |https://bathbuiltfurniture.com/wood-materials
+          tbody
+            each material in materials
+              tr
+                td
+                  |#{material.entry.fields.name['en-US']}
+                td
+                  a(href='/wood-materials/#{material.slug}')
+                    |https://bathbuiltfurniture.com/wood-materials/#{material.slug}
+    include footer.jade
+block scripts
+  include ./includes/stylesheets.html
+  include ./includes/scripts.html

@@ -177,18 +177,20 @@ router.get('/products/:id', function(req, res, next) {
     }
 
     // generate two sets of images
-    var setA = []
-    var setB = []
+    if(raw.entry.fields.pictures) {
+      var setA = []
+      var setB = []
 
-    for (var i = 0; i < raw.entry.fields.pictures["en-US"].length; i++) {
-      if(i%2 == 0) {
-        setA.push(raw.entry.fields.pictures["en-US"][i])
-      } else {
-        setB.push(raw.entry.fields.pictures["en-US"][i])
+      for (var i = 0; i < raw.entry.fields.pictures["en-US"].length; i++) {
+        if(i%2 == 0) {
+          setA.push(raw.entry.fields.pictures["en-US"][i])
+        } else {
+          setB.push(raw.entry.fields.pictures["en-US"][i])
+        }
       }
-    }
 
-    raw.entry.fields.pictures["en-US"] = {setA: setA, setB: setB}
+      raw.entry.fields.pictures["en-US"] = {setA: setA, setB: setB}
+    }
 
     res.render('product', { title: result[3][0].entry.fields.name["en-US"] + ' | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], result: raw })
   })
@@ -205,6 +207,39 @@ router.get('/testimonials', function(req, res, next) {
       return
     }
     res.render('testimonials', { title: 'Testimonials | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], testimonials: result[3] })
+  })
+})
+
+router.get('/site-directory', function(req, res, next) {
+  data.getSitemapPage(function(err, result){
+    if(err) {
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
+      return
+    }
+
+    var products = result[3]
+    var rooms = result[0]
+
+    // sort products into room categories
+    for(var i = 0; i < rooms.length; i++) {
+      rooms[i].products = []
+      for(var j = 0; j < products.length; j++) {
+        if(products[j].entry.fields.rooms) {
+          loopmatch:
+            for(var k = 0; k < products[j].entry.fields.rooms['en-US'].length; k++) {
+              if(products[j].entry.fields.rooms['en-US'][k].sys.id == rooms[i].cid) {
+                rooms[i].products.push(products[j])
+                break loopmatch
+              }
+            }
+        }
+      }
+    }
+
+    res.render('site-directory', { title: 'Site Directory | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: rooms, stains: result[1], materials: result[2]})
   })
 })
 
