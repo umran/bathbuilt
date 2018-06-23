@@ -28,6 +28,11 @@ $(document).ready(function() {
     }, 500)
   })
 
+  // run function to display price when size and material options do not exist
+  if(!isMaterialOrSize()) {
+    getPrice()
+  }
+
   var validatedOrderFields = {
     name: 'empty',
     email: 'empty',
@@ -365,6 +370,7 @@ function getPrice() {
     url: "/get-price",
     data: formData,
     success: function(data){
+      console.log(data)
       if(data.status == 'success' && data.response) {
         // change price
         $('#price').text('$' + data.response.entry.fields.price['en-US'])
@@ -429,3 +435,12 @@ function submitContactForm(formData) {
   })
 }
 /* End of Contact Form Logic */
+
+/* check for materials and size options */
+function isMaterialOrSize() {
+  if($("#sizeOption").length > 0 || $("#materialsOption").length > 0) {
+    return true
+  }
+
+  return false
+}

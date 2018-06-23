@@ -747,6 +747,8 @@ exports.getPrice = function(data, callback) {
     query = {$and:[{"entry.fields.material.en-US.sys.id": data.material_id}, {"type": "prices"}, {"entry.fields.product.en-US.sys.id": data.product_id}]}
   } else if (data.size_id) {
     query = {$and:[{"type": "prices"}, {"entry.fields.size.en-US.sys.id": data.size_id}, {"entry.fields.product.en-US.sys.id": data.product_id}]}
+  } else {
+    query = {$and:[{"type": "prices"}, {"entry.fields.product.en-US.sys.id": data.product_id}]}
   }
 
   Entry.findOne(query, function(err, res) {

@@ -12,10 +12,6 @@ module.exports = function(post, callback) {
     return
   }
 
-  if ((!post.size_id && !post.material_id)) {
-    callback('The post was submitted with incomplete information')
-  }
-
   clean.product_id = DOMPurify.sanitize(post.product_id, {SAFE_FOR_TEMPLATES: true});
 
   if(post.size_id) {
