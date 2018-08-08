@@ -102,8 +102,8 @@ exports.getRecentProducts = function(limit, callback) {
   })
 }
 
-exports.getRandomProducts = function(limit, callback) {
-  Entry.aggregate([{$match: {"type": "product"}}, {$sample: {"size": limit}}], function(err, res){
+exports.getRandomFeaturedProducts = function(limit, callback) {
+  Entry.aggregate([{$match: {"type": "product", "entry.fields.featured.en-US": true}}, {$sample: {"size": limit}}], function(err, res){
     if(err) {
       callback(err)
       return
@@ -402,7 +402,7 @@ exports.getHome = function(callback) {
   }, function(cb) {
     exports.getAllMaterials(cb)
   }, function(cb) {
-    exports.getRandomProducts(1, cb)
+    exports.getRandomFeaturedProducts(4, cb)
   }], function(err, res) {
     if(err) {
       callback(err)

@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
       //res.render('error')
       return
     }
-    res.render('index', { title: 'Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], feature: result[3][0] })
+    res.render('index', { title: 'Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], features: result[3] })
   })
 })
 
