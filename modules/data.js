@@ -124,6 +124,17 @@ exports.getRandomFeaturedProducts = function(limit, callback) {
   })
 }
 
+exports.getOrderedFeaturedProducts = function(limit, callback) {
+  Entry.find({"type": "product", "entry.fields.featured.en-US": true}).sort({"entry.fields.featureOrder.en-US": 1}).limit(limit).exec(function(err, res){
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
 exports.getProductsByRoom = function(id, callback) {
   Entry.aggregate([{
     $unwind : "$entry.fields.rooms.en-US"
@@ -413,7 +424,7 @@ exports.getHome = function(callback) {
   }, function(cb) {
     exports.getAllMaterials(cb)
   }, function(cb) {
-    exports.getRandomFeaturedProducts(4, cb)
+    exports.getOrderedFeaturedProducts(4, cb)
   }], function(err, res) {
     if(err) {
       callback(err)
