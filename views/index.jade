@@ -14,8 +14,9 @@ block content
                 h1(class="ui inverted header title")
                   |#{feature.entry.fields.name["en-US"]}
 
-    .ui.vertical.showcase.segment
+    .ui.vertical.showcase.segment.featured-section
       .ui.container
+        h2 Featured Items
         .ui.four.doubling.cards
           each feature in features
             a.card.screv(href="/products/#{feature.slug}")

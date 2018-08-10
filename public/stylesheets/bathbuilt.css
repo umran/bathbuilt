@@ -148,6 +148,10 @@ h1, h2, h3, h4, h5, h6, .ui.header.title, .better.header {
   color: rgba(0,0,0,.87);
 }
 
+.featured-section {
+  text-align: center;
+}
+
 /** Dropdown Menu **/
 .ui.link.list .item, .ui.link.list .item a:not(.ui), .ui.link.list a.item {
   color: rgba(0,0,0,0.75);
@@ -363,6 +367,7 @@ span.line-text {
 
 .price {
   margin-top:0!important;
+  color: #39d7fa;
 }
 
 .circ {
