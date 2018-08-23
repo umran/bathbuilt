@@ -26,7 +26,7 @@ block content
         .six.wide.column
           h1(itemprop="name").centered-text
             | #{result.entry.fields.name['en-US']}
-          h3.price(id='price').centered-text
+          //-h3.price(id='price').centered-text
             | To display price, select options below
           if result.entry.fields.specifications
             .product-description(itemprop="description")
@@ -68,6 +68,8 @@ block content
                         |#{size.fields.name["en-US"]}
             .ui.hidden.negative.message(id='choice-error')
               p(id='choice-error-message')
+            h3.price(id='price').centered-text
+              | To display price, please select options above
             button.first.submit.ui.teal.basic.button(id="toggle-modal-order")
               |Order Now
             button.submit.ui.grey.basic.button(id="toggle-modal-customize")
