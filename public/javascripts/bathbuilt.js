@@ -341,6 +341,7 @@ function submitOrderForm(formData) {
         $('#final-message').addClass('positive')
         $('#final-message-text').text(data.message)
         $('#modal-final').modal('show')
+        report_order_submission()
       } else {
         // close current modal and display new modal
         $('.ui.modal').modal('hide all')
@@ -443,4 +444,16 @@ function isMaterialOrSize() {
   }
 
   return false
+}
+
+/* Google Analytics and Ad Words Events and Conversions */
+function report_order_submission() {
+  var callback = function() {
+    console.log('order reported')
+  }
+
+  gtag('event', 'conversion', {
+    'send_to': 'AW-859151918/fG2wCMmfyogBEK681pkD',
+    'event_callback': callback
+  })
 }
