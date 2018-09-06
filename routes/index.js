@@ -210,6 +210,20 @@ router.get('/testimonials', function(req, res, next) {
   })
 })
 
+// faq
+router.get('/faq', function(req, res, next) {
+  data.getFAQPage(function(err, result){
+    if(err) {
+      var httpError = new Error('Not Found');
+      httpError.status = 404;
+      next(httpError)
+      //res.render('error')
+      return
+    }
+    res.render('faq', { title: 'FAQ | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], faqs: result[3] })
+  })
+})
+
 router.get('/site-directory', function(req, res, next) {
   data.getSitemapPage(function(err, result){
     if(err) {

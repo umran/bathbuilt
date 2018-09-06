@@ -706,6 +706,17 @@ exports.getAllTestimonials = function(callback) {
   })
 }
 
+exports.getAllFAQs = function(callback) {
+  Entry.find({type: "faq"}).sort({date_modified: -1}).exec(function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
 exports.getTestimonialPage = function(callback) {
   async.parallel([function(cb) {
     exports.getAllRooms(cb)
@@ -715,6 +726,25 @@ exports.getTestimonialPage = function(callback) {
     exports.getAllMaterials(cb)
   }, function(cb) {
     exports.getAllTestimonials(cb)
+  }], function(err, res) {
+    if(err) {
+      callback(err)
+      return
+    }
+
+    callback(null, res)
+  })
+}
+
+exports.getFAQPage = function(callback) {
+  async.parallel([function(cb) {
+    exports.getAllRooms(cb)
+  }, function(cb) {
+    exports.getAllStains(cb)
+  }, function(cb) {
+    exports.getAllMaterials(cb)
+  }, function(cb) {
+    exports.getAllFAQs(cb)
   }], function(err, res) {
     if(err) {
       callback(err)

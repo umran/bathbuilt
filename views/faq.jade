@@ -1,0 +1,29 @@
+extends faq-layout
+
+block content
+  include sidebar.jade
+  div.pusher
+    include menu-alt.jade
+
+    .testimonials
+      article
+
+        h1.centered-text Bath Built Custom Furniture - FAQ
+        //-p
+          |At <a href="https://bathbuilt.com/about" title="Bath Built  Custom Furniture">Bath Built  Custom Furniture</a>, we take great pride not only in the quality of our solid wood furniture  products, but also in how our clients respond to their new handmade wood furniture pieces. Below are just a few of the many testimonials our clients have been kind enough to share with us:
+
+        each faq in faqs
+          h2.ui.header
+            |#{faq.entry.fields.question['en-US']}
+          p
+            |#{faq.entry.fields.answer['en-US']}
+
+        h2.falseone.centered-text
+          |Contact Bath Built
+        p
+          |We welcome the opportunity to build a custom solid wood furniture piece just for you. To inquire about any of our custom wood furniture designs, please <a href="https://bathbuilt.com/contact">contact us</a> online or send us an <a href="mailto:bathbuiltcustom@gmail.com?subject=Custom Built Solid Wood Furniture">email</a>
+
+    include footer.jade
+block scripts
+  include ./includes/stylesheets.html
+  include ./includes/scripts.html
