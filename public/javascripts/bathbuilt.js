@@ -425,6 +425,7 @@ function submitContactForm(formData) {
         $('#contact-message').addClass('positive')
         $('#contact-message-text').text(data.message)
         $('#contact-modal').modal('show')
+        report_inquiry_submission()
       } else {
         // close current modal and display new modal
         $('.ui.modal').modal('hide all')
@@ -448,12 +449,11 @@ function isMaterialOrSize() {
 
 /* Google Analytics and Ad Words Events and Conversions */
 function report_order_submission() {
-  var callback = function() {
-    console.log('order reported')
-  }
+  console.log('reporting order submission')
+  ga('send', 'event', 'Interaction', 'Submit_Order')
+}
 
-  gtag('event', 'conversion', {
-    'send_to': 'AW-859151918/fG2wCMmfyogBEK681pkD',
-    'event_callback': callback
-  })
+function report_inquiry_submission() {
+  console.log('reporting inquiry submission')
+  ga('send', 'event', 'Interaction', 'Submit_Inquiry')
 }
