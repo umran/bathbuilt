@@ -220,6 +220,17 @@ router.get('/faq', function(req, res, next) {
       //res.render('error')
       return
     }
+
+    for(var i = 0; i<result[3].length; i++) {
+      if(result[3][i].entry.fields.question) {
+        result[3][i].entry.fields.question['en-US'] = converter.makeHtml(result[3][i].entry.fields.question['en-US'])
+      }
+
+      if(result[3][i].entry.fields.answer) {
+        result[3][i].entry.fields.answer['en-US'] = converter.makeHtml(result[3][i].entry.fields.answer['en-US'])
+      }
+    }
+
     res.render('faq', { title: 'FAQ | Bath Built Custom Solid Wood Furniture Designs Vancouver', rooms: result[0], stains: result[1], materials: result[2], faqs: result[3] })
   })
 })

@@ -13,10 +13,8 @@ block content
           |At <a href="https://bathbuilt.com/about" title="Bath Built  Custom Furniture">Bath Built  Custom Furniture</a>, we take great pride not only in the quality of our solid wood furniture  products, but also in how our clients respond to their new handmade wood furniture pieces. Below are just a few of the many testimonials our clients have been kind enough to share with us:
 
         each faq in faqs
-          h2.ui.header
-            |#{faq.entry.fields.question['en-US']}
-          p
-            |#{faq.entry.fields.answer['en-US']}
+          | !{faq.entry.fields.question['en-US']}
+          | !{faq.entry.fields.answer['en-US']}
 
         h2.falseone.centered-text
           |Contact Bath Built
