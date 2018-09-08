@@ -470,12 +470,16 @@ function isMaterialOrSize() {
 /* Google Analytics and Ad Words Events and Conversions */
 function report_order_submission() {
   console.log('reporting order submission')
-  ga('send', 'event', 'Interaction', 'Submit_Order')
+  gtag('event', 'Submit_Order', {
+    'event_category': 'Interaction'
+  })
 }
 
 function report_inquiry_submission() {
   console.log('reporting inquiry submission')
-  ga('send', 'event', 'Interaction', 'Submit_Inquiry')
+  gtag('event', 'Submit_Inquiry', {
+    'event_category': 'Interaction'
+  })
 }
 
 /* Expand Image Logic */
