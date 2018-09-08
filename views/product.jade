@@ -10,10 +10,12 @@ block content
 
         .five.wide.column.product-item.image-column
           each image in result.entry.fields.pictures["en-US"]["setA"]
-            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=100' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+            a.ui.fluid.image.dual-image(href='#')
+              img.expandable-product-image(data-src='#{image.fields.file["en-US"].url}?q=100' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
         .five.wide.column.product-item.image-column
           each image in result.entry.fields.pictures["en-US"]["setB"]
-            img.ui.fluid.image.dual-image(data-src='#{image.fields.file["en-US"].url}?q=100' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
+            a.ui.fluid.image.dual-image(href='#')
+              img.expandable-product-image(data-src='#{image.fields.file["en-US"].url}?q=100' data-original='#{image.fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
 
         //-.ten.wide.column.product-item
           img.ui.fluid.image.main-image(itemprop="image" data-src='#{result.entry.fields.pictures["en-US"][0].fields.file["en-US"].url}?q=80' alt="#{result.entry.fields.name['en-US']}")
@@ -150,6 +152,15 @@ block content
       .content
         .ui.message(id='final-message')
           .header(id='final-message-text')
+
+    .ui.fullscreen.modal(id='modal-image')
+      .header.cycle-buttons
+        .ui.button.cycle-button(onclick='cycle_image(-1);')
+          i.fas.fa-arrow-left
+        .ui.button.cycle-button(onclick='cycle_image(1);')
+          i.fas.fa-arrow-right
+      .image.content
+        img.image(id='dynamic-image')
 
     include footer.jade
 

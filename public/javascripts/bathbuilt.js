@@ -1,3 +1,9 @@
+Number.prototype.mod = function(n) {
+    return ((this%n)+n)%n
+}
+
+var page_images = null
+
 $(document).ready(function() {
 
   /* Lazy Loading Images */
@@ -181,6 +187,20 @@ $(document).ready(function() {
     centerMusk()
   })
 
+  // all product images listen to click event
+  $('.expandable-product-image').click(function() {
+    expand_image(this)
+  })
+
+  $('#cycle-forward').click(function() {
+    console.log('clicked')
+    cycle_image(1)
+  })
+
+  $('#cycle-backward').click(function() {
+    console.log('clicked')
+    cycle_image(-1)
+  })
 })
 
 function centerMusk() {
@@ -456,4 +476,43 @@ function report_order_submission() {
 function report_inquiry_submission() {
   console.log('reporting inquiry submission')
   ga('send', 'event', 'Interaction', 'Submit_Inquiry')
+}
+
+/* Expand Image Logic */
+function expand_image(referrer) {
+  var src = $(referrer).attr('data-original')
+  $('#modal-image #dynamic-image').attr('src', src)
+  setTimeout(function() {
+    $('#modal-image').modal('show')
+  }, 1000)
+}
+
+function set_page_images() {
+  page_images = generate_image_list()
+}
+
+function generate_image_list() {
+  var images = []
+  $('.expandable-product-image').each(function() {
+    var url = $(this).attr('data-original')
+    images.push(url)
+  })
+
+  return images
+}
+
+function cycle_image(direction) {
+  if(!page_images) {
+    set_page_images()
+  }
+  var cur = $('#dynamic-image').attr('src')
+  var cur_index = page_images.indexOf(cur)
+
+  var next_index = (cur_index + direction).mod(page_images.length)
+
+  console.log('current index = ' + cur_index)
+  console.log('next index = ' + next_index)
+
+  $('#dynamic-image').attr('src', page_images[next_index])
+
 }
