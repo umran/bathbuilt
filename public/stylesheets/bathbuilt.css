@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6, .ui.header.title, .better.header {
   /*background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)), url('https://picsum.photos/1000/700/?random');*/
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.ctfassets.net/3qgfejllni6q/6DipU1ncl2eAakoKwokOOW/c5e7b97a2be4bb64fc8f7c9669b48651/2018-01-15-18-46-18-2.jpg');
   padding: 0em 0em;
-  min-height: calc(100vh + 2em);
+  min-height: calc(70vh + 2em);
 }
 
 .masthead .ui.text.menu {
