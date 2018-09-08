@@ -6,6 +6,13 @@ var page_images = null
 
 $(document).ready(function() {
 
+  /* capture all email clicks */
+  $('.email-link').click(function() {
+    gtag('event', 'Direct_Inquiry_Initiation', {
+      'event_category': 'Interaction'
+    })
+  })
+
   /* Lazy Loading Images */
   $('div[data-style]').each(function(i, product) {
     product.setAttribute('style', product.getAttribute('data-style'))
