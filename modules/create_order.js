@@ -44,7 +44,7 @@ module.exports = function(post, callback) {
 
       var mailOptions = {
         from: '"The Website" <noreply@bathbuiltfurniture.com>', // sender address
-        to: 'bathbuiltcustom@gmail.com', // list of receivers
+        to: 'sales@bathbuiltfurniture.com', // list of receivers
         subject: orderType +': ' + clean.post.product, // Subject line
         text: 'Check HTML message', // plain text body
         html: messageContent // html body
