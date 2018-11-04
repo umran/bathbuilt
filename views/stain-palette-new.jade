@@ -1,4 +1,4 @@
-extends material-palette-layout
+extends stain-palette-layout
 
 block content
   include sidebar.jade
@@ -7,21 +7,27 @@ block content
 
     .stain-content
       .ui.container
-        h1.centered-text Solid Wood Materials for Bath Built Custom Furniture
+        h1.centered-text Wood Stains for Bath Built Custom Furniture
 
       .ui.vertical.showcase.segment.rooms
         .ui.container
-          .ui.four.doubling.cards
-            each material in materials
-              if material.entry.fields.picture
-                a.card.screv(href="/wood-materials/#{material.slug}")
-                  .image.product(data-style=("background-image: url('" + material.entry.fields.picture["en-US"].fields.file["en-US"].url + "?q=20');"))
+          each material in materials
+            if material.entry.fields.stainVariations
+              h2.centered-text
+                |#{material.entry.fields.name["en-US"]}
+              each stain in material.entry.fields.stainVariations["en-US"]
+              .ui.four.doubling.cards
+                card.screv
+                  .image.product(data-style=("background-image: url('" + stain.fields.file["en-US"].url + "?q=20');"))
                   .content
                     .better.header.centered-text
-                      |#{material.entry.fields.name["en-US"]}
+                      |#{stain.fields.title["en-US"]}
 
-    //-.intro
+
+    .intro
       article
+        h2.centered-text
+          |Wood Stains to Match Your Home’s Décor
         p
           |You’ll love our wood stain colours! No matter what type of custom solid wood furniture you want built, our woodworking experts can help you find the perfect wood stain to match your home’s décor.
 
