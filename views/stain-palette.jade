@@ -17,7 +17,7 @@ block content
                 |#{material.entry.fields.name["en-US"]}
               .ui.four.doubling.cards
                 each stain in material.entry.fields.stainVariations["en-US"]
-                  a.card.screv
+                  .card.screv
                     .image.product(data-style=("background-image: url('" + stain.fields.file["en-US"].url + "?q=20');"))
                     .content
                       .better.header.centered-text
