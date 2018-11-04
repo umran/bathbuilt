@@ -11,17 +11,13 @@ block content
 
       .ui.vertical.showcase.segment.rooms
         .ui.container
-          each material in materials
-            if material.entry.fields.stainVariations
-              h2.centered-text
-                |#{material.entry.fields.name["en-US"]}
-              each stain in material.entry.fields.stainVariations["en-US"]
-              .ui.four.doubling.cards
-                card.screv
-                  .image.product(data-style=("background-image: url('" + stain.fields.file["en-US"].url + "?q=20');"))
-                  .content
-                    .better.header.centered-text
-                      |#{stain.fields.title["en-US"]}
+          .ui.four.doubling.cards
+            each stain in stains
+              a.card.screv(href="/wood-stains/#{stain.slug}")
+                .image.product(data-style=("background-image: url('" + stain.entry.fields.picture["en-US"].fields.file["en-US"].url + "?q=20');"))
+                .content
+                  .better.header.centered-text
+                    |#{stain.entry.fields.name["en-US"]}
 
 
     .intro
